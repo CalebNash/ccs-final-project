@@ -181,6 +181,11 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/3.0/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# https://django-rest-auth.readthedocs.io/en/latest/configuration.html
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+}
+
 #https://docs.djangoproject.com/en/3.1/ref/settings/#default-file-storage
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
