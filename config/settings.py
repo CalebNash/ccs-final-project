@@ -46,7 +46,9 @@ INSTALLED_APPS = [
 
 
     #local
+    'accounts.apps.AccountsConfig',
     'frontend.apps.FrontendConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -141,6 +143,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Substituting a custom User model
+# https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#substituting-a-custom-user-model
+AUTH_USER_MODEL = 'accounts.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
