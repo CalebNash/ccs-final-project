@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import Register from './components/Register';
 import Login from './components/Login.js';
 import Home from './components/Home.js';
+import GetHelp from './components/GetHelp.js';
 import {Route, BrowserRouter as Router, Switch, Link} from 'react-router-dom';
 
 
@@ -48,12 +49,14 @@ class App extends React.Component{
         <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
         <Link to='/login'><button className="btn  menu-button"type="button">Login</button></Link>
         <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
+        <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
         <button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
       </nav>
         <Switch>
           <Route path='/' exact component={Home}/>
           <Route path='/login' component={Login}/>
           <Route path='/register' component={Register}/>
+          <Route path='/gethelp' component={GetHelp}/>
         </Switch>
       </Router>
     )
