@@ -35,6 +35,7 @@ class Login extends React.Component{
 
       if(data.key){
         Cookies.set('Authorization', `Token ${data.key}`)
+        this.props.history.push('/employee');
         //this.setState({loggedIn: true});
         //localStorage.setItem('is_staff', data.is_staff);
         //this.setState({page: 'New Recipe'})

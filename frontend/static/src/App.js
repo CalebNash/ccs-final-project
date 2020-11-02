@@ -4,14 +4,15 @@ import Register from './components/Register';
 import Login from './components/Login.js';
 import Home from './components/Home.js';
 import GetHelp from './components/GetHelp.js';
-import {Route, BrowserRouter as Router, Switch, Link} from 'react-router-dom';
+import EmployeePage from './components/EmployeePage.js';
+import {Route, Switch, Link, withRouter} from 'react-router-dom';
 
 
 class App extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-
+      loggedIn: Cookies.get('Authorization')? true: false,
     }
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -33,6 +34,7 @@ class App extends React.Component{
 
     if(data.detail === "Successfully logged out."){
       Cookies.remove('Authorization');
+      this.props.history.push('/');
       //this.setState({page: 'home'});
       //this.setState({loggedIn: false});
       //localStorage.removeItem('is_staff');
@@ -44,7 +46,7 @@ class App extends React.Component{
 
 
     return (
-      <Router>
+      <React.Fragment>
       <nav className="navbar navbar-expand-lg">
         <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
         <Link to='/login'><button className="btn  menu-button"type="button">Login</button></Link>
@@ -57,9 +59,10 @@ class App extends React.Component{
           <Route path='/login' component={Login}/>
           <Route path='/register' component={Register}/>
           <Route path='/gethelp' component={GetHelp}/>
+          <Route path='/employee' component={EmployeePage}/>
         </Switch>
-      </Router>
+      </React.Fragment>
     )
   }
 }
-export default App;
+export default withRouter(App);
