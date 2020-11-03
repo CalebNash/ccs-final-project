@@ -52,6 +52,7 @@ class App extends React.Component{
         <Link to='/login'><button className="btn  menu-button"type="button">Login</button></Link>
         <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
         <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
+        <Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link>
         <button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
       </nav>
         <Switch>
