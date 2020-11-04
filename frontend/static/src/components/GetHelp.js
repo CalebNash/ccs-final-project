@@ -1,28 +1,34 @@
 import React from 'react';
 // import Map from './Map.js'
-
-
-
 import GoogleMapReact from 'google-map-react';
 
-function Map(props){
-  //const locations = props.locations
 
-  function addMarkers(map, maps){
-    const locations = props.locations
-    for(var i = 0; i < locations.length; i++){
-      renderMarkers(map, maps, locations[i]);
-    }
+
+
+class Map extends React.Component{
+  constructor(props){
+  super(props)
+  this.state = {
+  }
+  this.renderMarkers = this.renderMarkers.bind(this);
+  this.addMarkers = this.addMarkers.bind(this);
+}
+  addMarkers(map, maps){
+    console.log('happy', this.props.locations);
+    // for(var i = 0; i < locations.length; i++){
+    //   console.log('hello');
+    //   this.renderMarkers(map, maps, locations[i]);
+    // }
   }
 
 
- const renderMarkers = (map, maps, location) => {
-   console.log('hello');
+ renderMarkers(map, maps, locations){
+   console.log('hello', locations);
     var infoWindow = new maps.InfoWindow({
       content: `<h5>Desiard Street Shelter</h5><p>hours: Mon - Sun 6am - 6pm</p> <a href="https://www.google.com/maps/place/807 Desiard St, Monroe, LA 71201">807 Desiard St, Monroe, LA 71201</a>`
     });
     let marker = new maps.Marker({
-    position: { lat: location.lat, lng: location.lng },
+    position: { lat: 32.506010, lng: -92.111090 },
     map,
     title: 'Desiard Street Shelter',
     });
@@ -33,7 +39,9 @@ function Map(props){
  };
 
 
-
+render(){
+console.log('map', this.props.locations)
+const locations = this.props.locations;
  return (
    <div style={{ height: '400px', width: '400px' }}>
     <GoogleMapReact
@@ -41,11 +49,12 @@ function Map(props){
       defaultCenter={{ lat: 32.5059041, lng: -92.11102670000001 }}
       defaultZoom={12}
       yesIWantToUseGoogleMapApiInternals
-      onGoogleApiLoaded={({ map, maps }) => addMarkers(map, maps)}
+      onGoogleApiLoaded={({ map, maps }) => this.addMarkers(map, maps, locations)}
     >
     </GoogleMapReact>
    </div>
  );
+}
 };
 
 
@@ -66,7 +75,8 @@ class GetHelp extends React.Component {
 
 
   render() {
-    // console.log(this.state.locations);
+     //console.log(this.state.locations);
+     console.log('this', this.state.locations)
     return (
       <Map locations={this.state.locations}/>
     )
