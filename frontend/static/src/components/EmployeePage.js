@@ -90,10 +90,12 @@ class EmployeePage extends React.Component{
 
 
   render(){
+    console.log(this.state.lat);
     return(
       <React.Fragment>
       <div>
         <h1>Employee Page</h1>
+        <button onClick={()=> this.getGeoCode()}>click me</button>
       </div>
       <form className="col-12" onSubmit={(event)=> this.addLocation(event)}>
         <div className="form-group">
