@@ -21,22 +21,18 @@ class EmployeePage extends React.Component{
     this.getGeoCode = this.getGeoCode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChecked = this.handleChecked.bind(this);
+    this.addLocation = this.addLocation.bind(this);
   }
 
-  getGeoCode(address){
+  async getGeoCode(){
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
     Geocode.setLanguage("en");
-    Geocode.fromAddress(this.state.address).then(
-    response => {
-      const { lat, lng } = response.results[0].geometry.location;
-      console.log(lat, lng);
-      this.setState({lat: lat})
-      this.setState({lng: lng})
-    },
-    error => {
-      console.error(error);
-    }
-    );
+
+
+    const response = await Geocode.fromAddress(this.state.address)
+    const { lat, lng } = response.results[0].geometry.location;
+    await this.setState({lat: lat})
+    await this.setState({lng: lng})
   }
 
   handleChange(event) {
@@ -67,6 +63,9 @@ class EmployeePage extends React.Component{
     event.preventDefault();
     await this.getGeoCode();
     let hours = this.state.dayOpen + ' - ' + this.state.dayClose + ' - ' + this.state.hourOpen + ' - ' + this.state.hourClose;
+    let lat = this.state.lat.toString();
+    let lng = this.state.lng.toString();
+
     const options = {
       method:'POST',
       headers:{
@@ -76,8 +75,8 @@ class EmployeePage extends React.Component{
       body: JSON.stringify({
         name: this.state.name,
         address: this.state.address,
-        lat: this.state.lat,
-        lng: this.state.lng,
+        lat: lat,
+        lng: lng,
         hours: hours,
         categories: this.state.categories,
       }),
@@ -90,7 +89,6 @@ class EmployeePage extends React.Component{
 
 
   render(){
-    console.log(this.state.lat);
     return(
       <React.Fragment>
       <div>

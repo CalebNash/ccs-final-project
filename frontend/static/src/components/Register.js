@@ -32,8 +32,8 @@ class Register extends React.Component{
   };
 
   const handleError = (err) => console.warn(err);
-  const responce = await fetch('/api/v1/rest-auth/registration/', options);
-  const data = await responce.json().catch(handleError);
+  const response = await fetch('/api/v1/rest-auth/registration/', options);
+  const data = await response.json().catch(handleError);
 
   if(data.key){
     Cookies.set('Authorization', `Token ${data.key}`)
