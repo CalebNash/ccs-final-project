@@ -5,3 +5,31 @@
   height: 100px;
   width: 100px;
 }
+
+.banner{
+  background-image:url('./images/banner.png');
+  width: 100%;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.carousel{
+  width: 500px;
+}
+
+#employee-pages{
+  justify-content:center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+}
+
+.locations-list-row{
+  justify-content: center;
+}
+
+.locations-list{
+  background-color: #F5F5F5;
+}

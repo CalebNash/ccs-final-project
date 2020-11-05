@@ -58,8 +58,9 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
     'banner_images.apps.BannerImagesConfig',
+    'events.apps.EventsConfig',
     'frontend.apps.FrontendConfig',
-    'locations.apps.LocationsConfig'
+    'locations.apps.LocationsConfig',
 
 ]
 

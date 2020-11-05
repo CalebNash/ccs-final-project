@@ -2,6 +2,7 @@ from django.urls import path, include
 
 
 urlpatterns = [
+    path('events/', include('events.urls')),
     path('locations/', include('locations.urls')),
     path('banner_images/', include('banner_images.urls')),
     path('rest-auth/', include('rest_auth.urls')),

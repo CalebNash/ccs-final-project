@@ -6,6 +6,7 @@ import Home from './components/Home.js';
 import GetHelp from './components/GetHelp.js';
 import EmployeePage from './components/EmployeePage.js';
 import {Route, Switch, Link, withRouter} from 'react-router-dom';
+import './App.css';
 
 
 class App extends React.Component{
@@ -47,6 +48,7 @@ class App extends React.Component{
 
     return (
       <React.Fragment>
+      <div className='banner'></div>
       <nav className="navbar navbar-expand-lg">
         <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
         <Link to='/login'><button className="btn  menu-button"type="button">Login</button></Link>
