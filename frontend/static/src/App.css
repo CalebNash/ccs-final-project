@@ -30,6 +30,38 @@
   justify-content: center;
 }
 
-.locations-list{
+#locations-list{
   background-color: #F5F5F5;
+  flex-direction:row;
+}
+
+.location-title{
+  font-size: 14px;
+}
+
+.location-form-modal{
+    width: 50vw;
+    max-width: 50vw;
+}
+
+@media (max-width: 796px) {
+  .location-form-modal{
+      width: 90vw;
+      max-width: 90vw;
+  }
+}
+
+.days-open{
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+.hours-open{
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+#open-info-lable{
+  margin-left: 20px;
+  margin-right: 10px;
 }

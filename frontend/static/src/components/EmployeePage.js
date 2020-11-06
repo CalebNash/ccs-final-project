@@ -1,6 +1,7 @@
 import React from 'react';
 import EditEvent from './EditEvent';
 import EditMarkers from './EditMarkers';
+import AddMarkers from './AddMarkers';
 
 
 class EmployeePage extends React.Component{
@@ -23,7 +24,7 @@ class EmployeePage extends React.Component{
     if(page === 'Events'){
       display = <EditEvent/>;
     }else if(page === 'Locations'){
-      display = <EditMarkers/>;
+      display = <React.Fragment><EditMarkers/><AddMarkers/></React.Fragment>;
     }
     return(
       <div className='container'>

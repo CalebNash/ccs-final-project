@@ -9,3 +9,8 @@ class Location(models.Model):
     lng = models.CharField(max_length=255)
     categories = ArrayField(models.CharField(max_length=100, blank=True), blank = True, null = True,)
     hours = models.CharField(max_length=255, null=True)
+    dayOpen = models.CharField(max_length=255, null=True)
+    dayClose = models.CharField(max_length=255, null=True)
+    hourOpen = models.CharField(max_length=255, null=True)
+    hourClose = models.CharField(max_length=255, null=True)
+    website = models.CharField(max_length=255, null=True, blank=True)
