@@ -1,7 +1,10 @@
 import React from 'react';
-import Geocode from "react-geocode";
 import Cookies from 'js-cookie';
 import {Modal} from 'react-bootstrap';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 
 class AddMarkers extends React.Component{
@@ -21,11 +24,12 @@ class AddMarkers extends React.Component{
       show: false,
 
     }
-    this.getGeoCode = this.getGeoCode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChecked = this.handleChecked.bind(this);
     this.addLocation = this.addLocation.bind(this);
-    this.handleClose = this.handleClose.bind(this)
+    this.handleClose = this.handleClose.bind(this);
+    this.handleAddress = this.handleAddress.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
 
   }
 
@@ -33,18 +37,23 @@ class AddMarkers extends React.Component{
    this.setState({show: false})
  }
 
-  async getGeoCode(){
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-    Geocode.setLanguage("en");
-    const response = await Geocode.fromAddress(this.state.address)
-    const { lat, lng } = response.results[0].geometry.location;
-    await this.setState({lat: lat})
-    await this.setState({lng: lng})
-  }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
   }
+
+
+  handleAddress (address) {
+    this.setState({ address });
+  };
+
+async handleSelect (address) {
+    await geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => this.setState({lat: latLng.lat, lng: latLng.lng, address}))
+      .catch(error => console.error('Error', error));
+
+  };
 
   handleChecked(event){
     let categories = this.state.categories;
@@ -68,7 +77,6 @@ class AddMarkers extends React.Component{
 
   async addLocation(event){
     event.preventDefault();
-    await this.getGeoCode();
     let hours = this.state.dayOpen + ' - ' + this.state.dayClose + ' - ' + this.state.hourOpen + ' - ' + this.state.hourClose;
     let lat = this.state.lat.toString();
     let lng = this.state.lng.toString();
@@ -103,7 +111,6 @@ class AddMarkers extends React.Component{
 
 
   render(){
-
     return(
       <React.Fragment>
       <button onClick={() => this.setState({ show: true})}>add location</button>
@@ -115,8 +122,46 @@ class AddMarkers extends React.Component{
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input type="text" className="form-control" id="name" name="name" value={this.state.name} onChange={this.handleChange}/>
-            <label htmlFor="address">Address</label>
-            <input type="text" className="form-control" id="adress" name="address" value={this.state.address} onChange={this.handleChange}/>
+            <PlacesAutocomplete
+              value={this.state.address}
+              onChange={this.handleAddress}
+              onSelect={this.handleSelect}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                <div>
+                  <label htmlFor="address">Address</label>
+                  <input
+                    {...getInputProps({
+                      placeholder: 'Search Places ...',
+                      className: 'form-control',
+                      id: 'address'
+                    })}
+                  />
+                  <div className="autocomplete-dropdown-container">
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map(suggestion => {
+                      const className = suggestion.active
+                        ? 'suggestion-item--active'
+                        : 'suggestion-item';
+                      // inline style for demonstration purpose
+                      const style = suggestion.active
+                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            className,
+                            style,
+                          })}
+                        >
+                          <span>{suggestion.description}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </PlacesAutocomplete>
             <label htmlFor="website">Website</label>
             <input type="text" className="form-control" id="website" name="website" value={this.state.website} onChange={this.handleChange}/>
             <div className="form-group row days-open">

@@ -1,5 +1,5 @@
 import React from 'react';
-import Cookies from 'js-cookie'
+import {Modal} from 'react-bootstrap';
 
 class Login extends React.Component{
   constructor(props){
@@ -7,54 +7,40 @@ class Login extends React.Component{
     this.state = {
       username: '',
       password: '',
-      register: false,
-
+      show: false,
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClose(){
+    this.setState({show: false})
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  async handleLogin(e, obj){
-    e.preventDefault();
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': Cookies.get('csrftoken'),
-        },
-        body: JSON.stringify(obj)
-      };
 
-      const handleError = (err) => console.warn(err);
-      const response = await fetch('/api/v1/rest-auth/login/', options);
-      const data = await response.json().catch(handleError);
-
-      if(data.key){
-        Cookies.set('Authorization', `Token ${data.key}`)
-        this.props.history.push('/employee');
-        //this.setState({loggedIn: true});
-        //localStorage.setItem('is_staff', data.is_staff);
-        //this.setState({page: 'New Recipe'})
-      }
-  }
 
   render(){
     return(
       <div>
-      <h1>Login</h1>
-      <form className="col-4" onSubmit={(event) => this.handleLogin(event, this.state)}>
+      <button className="btn  menu-button"type="button" onClick={() => this.setState({show: true})}>Login</button>
+      <Modal dialogClassName='login-modal' show={this.state.show} onHide={this.handleClose}>
+      <Modal.Header closeButton>Login</Modal.Header>
+      <Modal.Body>
+      <form onSubmit={(event) => this.props.handleLogin(event, this.state)}>
       <div className="form-group">
         <label htmlFor="title">username</label>
         <input type="text" className="form-control" id="username" name="username" value={this.state.title} onChange={this.handleChange}/>
         <label htmlFor="title">password</label>
         <input type="text" className="form-control" id="password" name="password" value={this.state.title} onChange={this.handleChange}/>
       </div>
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-primary" onClick={() => this.setState({show: false})}>Login</button>
     </form>
+    </Modal.Body>
+  </Modal>
       </div>
     )
   }

@@ -1,7 +1,10 @@
 import React from 'react';
-import Geocode from "react-geocode";
 import Cookies from 'js-cookie';
 import {Modal} from 'react-bootstrap';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 
 
@@ -15,12 +18,13 @@ class EditMarkers extends React.Component{
 
     }
 
-    this.editGeoCode = this.editGeoCode.bind(this);
     this.deleteLocation = this.deleteLocation.bind(this);
     this.editLocation = this.editLocation.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.editChecked = this.editChecked.bind(this);
-    this.handleClose = this.handleClose.bind(this)
+    this.handleClose = this.handleClose.bind(this);
+    this.handleAddress = this.handleAddress.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleClose(){
@@ -34,18 +38,26 @@ class EditMarkers extends React.Component{
     this.setState({locations:data});
   }
 
-
-
-  async editGeoCode(){
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-    Geocode.setLanguage("en");
-    const response = await Geocode.fromAddress(this.state.pickedLocation.address)
-    const { lat, lng } = response.results[0].geometry.location;
+  handleAddress (address) {
     const pickedLocation = {...this.state.pickedLocation};
-    pickedLocation.lat = lat;
-    pickedLocation.lng = lng;
-    await this.setState({pickedLocation});
-  }
+    pickedLocation.address = address;
+    this.setState({pickedLocation});
+  };
+
+async handleSelect (address) {
+  console.log(this.state.pickedLocation);
+    await geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(function(latLng) {
+              const pickedLocation = {...this.state.pickedLocation};
+              pickedLocation.address = address;
+              pickedLocation.lat = latLng.lat;
+              pickedLocation.lng = latLng.lng;
+              this.setState({pickedLocation});
+            })
+      .catch(error => console.error('Error', error));
+
+  };
 
 
 
@@ -76,7 +88,6 @@ class EditMarkers extends React.Component{
 
   async editLocation(event, id){
         event.preventDefault();
-        await this.editGeoCode();
         let hours = this.state.pickedLocation.dayOpen + ' - ' + this.state.pickedLocation.dayClose + ' - ' + this.state.pickedLocation.hourOpen + ' - ' + this.state.pickedLocation.hourClose;
         let lat = this.state.pickedLocation.lat.toString();
         let lng = this.state.pickedLocation.lng.toString();
@@ -125,7 +136,8 @@ class EditMarkers extends React.Component{
 
 
   render(){
-    console.log(this.state.pickedLocation.categories);
+    //console.log(this.state.pickedLocation.categories);
+    console.log(this.state.pickedLocation.address);
     const locations = this.state.locations.map(location => <button key={location.id} className=' btn location-title' onClick={() => this.setState({pickedLocation: location, isEditing: true})}>{location.name}</button>)
     //checked ={this.state.pickedLocation.categories.includes('overnight')}
     return(
@@ -143,11 +155,49 @@ class EditMarkers extends React.Component{
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" className="form-control" id="name" name="name" value={this.state.pickedLocation.name} onChange={this.handleEdit}/>
-          <label htmlFor="address">Address</label>
-          <input type="text" className="form-control" id="adress" name="address" value={this.state.pickedLocation.address} onChange={this.handleEdit}/>
+          <PlacesAutocomplete
+            value={this.state.pickedLocation.address}
+            onChange={this.handleAddress}
+            onSelect={this.handleSelect}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div>
+                <label htmlFor="address">Address</label>
+                <input
+                  {...getInputProps({
+                    placeholder: 'Search Places ...',
+                    className: 'form-control',
+                    id: 'address'
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style,
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
           <label htmlFor="website">Website</label>
           <input type="text" className="form-control" id="website" name="website" value={this.state.pickedLocation.website} onChange={this.handleEdit}/>
-          <div className="form-group row">
+          <div className="form-group row days-open">
           <div className="col-xs-2 form-group form-inline">
           <label htmlFor="dayOpen">Days open from: </label>
           <select type='text' id="dayOpen" className="form-control input-sm" name="dayOpen" value={this.state.pickedLocation.dayOpen} onChange={this.handleEdit}>
@@ -161,7 +211,7 @@ class EditMarkers extends React.Component{
           </select>
           </div>
           </div>
-          <div className="form-group row">
+          <div className="form-group row hours-open">
             <div className="col-xs-2 form-group form-inline">
               <label htmlFor="hourOpen">Hours open from: </label>
               <select cols='5' type='text' id="hourOpen" className="form-control input-sm" name="hourOpen" value={this.state.pickedLocation.hourOpen} onChange={this.handleEdit}>
@@ -175,7 +225,6 @@ class EditMarkers extends React.Component{
               </select>
             </div>
           </div>
-
           <div className="form-check form-check-inline">
             <input className="form-check-input" type="checkbox" id="overnight" value="overnight" onChange={this.editChecked} checked ={this.state.pickedLocation.categories?.includes('overnight')}/>
             <label className="form-check-label" htmlFor="overnight">overnight</label>

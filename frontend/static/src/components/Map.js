@@ -30,14 +30,12 @@ class Map extends React.Component {
   addMarkers(){
     const locations = this.state.locations;
     for(var i = 0; i < locations.length; i++){
-      console.log('hello');
       this.renderMarkers(locations[i]);
     }
   }
 
 
   renderMarkers(location){
-    console.log('hello', location);
     const map = this.state.map;
     const maps = this.state.maps;
     const intLat = parseFloat(location.lat);
@@ -59,8 +57,6 @@ class Map extends React.Component {
 
 
   render() {
-    console.log('maps: ',this.state.maps);
-    console.log('map: ',this.state.map);
    return (
      <div>
        <div style={{ height: '400px', width: '400px' }}>
