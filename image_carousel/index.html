@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Turn Based Game</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="top-nav">
+
+      <h1>Would you like to enter the Dungeon?</h1>
+      <button class="enterBtn btn btn-light">Enter</button>
+      <audio loop id="audio" src="./audio/_audio_odyssey.mp3"></audio>
+      <audio class="winAudio" src="./audio/well-done.wav"></audio>
+        <audio class="loseAudio" src="./audio/evil-laugh.wav"></audio>
+    </div>
+    <div class="menu-div">
+      <ul class="menu">
+        <li><a class="chooseHero" href="#s1">CHOOSE YOUR HERO</a>
+          <ul class="submenu">
+            <li><a id="knight" data-type='knight' class="hero" href="#"><img class="heropic" src="./images/knight.jpg"> KNIGHT</a></li>
+            <li><a id="archer" data-type='archer' class="hero" href="#"><img class="heropic" src="./images/archer-1.jpg"> ARCHER</a></li>
+            <li><a id="wizard" data-type='wizard' class="hero" href="#"><img class="heropic" src="./images/wizard-1.jpg"> WIZARD</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="enemies">
+      <div class="enemies-top">
+        <p class="enemy-name"></p>
+        <progress id="enemy-health-bar" value="100" max="100"></progress>
+      </div>
+      <img class="enemy" src="https://1.bp.blogspot.com/-wgWRq7FZo1w/WI4o4B8QqiI/AAAAAAAAAhE/CIhuRT41-G82XZSou4XJrLXnx5pmS-h7gCLcB/s1600/Ghoul-5e.png" alt="enemy">
+    </div>
+    <div class="heroes">
+      <div class="heroes-top">
+        <p class="player-name"></p>
+        <progress id="hero-health-bar" value="100" max="100"></progress>
+      </div>
+      <img id="character" src="" alt="player">
+    </div>
+  </div>
+
+  <!-- ////////////////////////attack button/////////////////////// -->
+  <button class="push--flat attack"></button>
+
+  <!-- //////////////////////////////////play again Button////////////////////////////////////// -->
+  <div>
+    <div class="play-button">
+      <a href="#">PLAY AGAIN</a>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>

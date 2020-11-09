@@ -2,6 +2,7 @@ import React from 'react';
 import EditEvent from './EditEvent';
 import EditMarkers from './EditMarkers';
 import AddMarkers from './AddMarkers';
+import CarouselImageForm from './CarouselImageForm';
 
 
 class EmployeePage extends React.Component{
@@ -33,6 +34,7 @@ class EmployeePage extends React.Component{
           <button className=" btn" onClick={() => this.handleClick('Locations')}>Locations</button>
         </section>
         {display}
+        <CarouselImageForm/>
       </div>
     )
   }

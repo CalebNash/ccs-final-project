@@ -57,10 +57,11 @@ INSTALLED_APPS = [
     #local
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
-    'banner_images.apps.BannerImagesConfig',
+    'image_carousel.apps.ImageCarouselConfig',
     'events.apps.EventsConfig',
     'frontend.apps.FrontendConfig',
     'locations.apps.LocationsConfig',
+    'needs.apps.NeedsConfig',
 
 ]
 

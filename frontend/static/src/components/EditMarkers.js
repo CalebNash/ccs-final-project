@@ -46,16 +46,13 @@ class EditMarkers extends React.Component{
 
 async handleSelect (address) {
   console.log(this.state.pickedLocation);
-    await geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(function(latLng) {
-              const pickedLocation = {...this.state.pickedLocation};
-              pickedLocation.address = address;
-              pickedLocation.lat = latLng.lat;
-              pickedLocation.lng = latLng.lng;
-              this.setState({pickedLocation});
-            })
-      .catch(error => console.error('Error', error));
+  const results = await geocodeByAddress(address)
+  const  latLng = await getLatLng(results[0])
+  const pickedLocation = {...this.state.pickedLocation};
+  pickedLocation.address = address;
+  pickedLocation.lat = latLng.lat;
+  pickedLocation.lng = latLng.lng;
+  this.setState({pickedLocation});
 
   };
 
@@ -136,10 +133,7 @@ async handleSelect (address) {
 
 
   render(){
-    //console.log(this.state.pickedLocation.categories);
-    console.log(this.state.pickedLocation.address);
     const locations = this.state.locations.map(location => <button key={location.id} className=' btn location-title' onClick={() => this.setState({pickedLocation: location, isEditing: true})}>{location.name}</button>)
-    //checked ={this.state.pickedLocation.categories.includes('overnight')}
     return(
       <React.Fragment>
       <div className='row locations-list-row'>
@@ -155,6 +149,7 @@ async handleSelect (address) {
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" className="form-control" id="name" name="name" value={this.state.pickedLocation.name} onChange={this.handleEdit}/>
+        {this.state.isEditing &&
           <PlacesAutocomplete
             value={this.state.pickedLocation.address}
             onChange={this.handleAddress}
@@ -195,6 +190,7 @@ async handleSelect (address) {
               </div>
             )}
           </PlacesAutocomplete>
+        }
           <label htmlFor="website">Website</label>
           <input type="text" className="form-control" id="website" name="website" value={this.state.pickedLocation.website} onChange={this.handleEdit}/>
           <div className="form-group row days-open">
@@ -254,7 +250,7 @@ async handleSelect (address) {
             <label className="form-check-label" htmlFor="vocational training">vocational training</label>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">Save</button>
+        <button type="submit" className="btn btn-primary" onClick={() => this.setState({isEditing: false})}>Save</button>
       </form>
     </Modal.Body>
   </Modal>

@@ -49,10 +49,9 @@ class AddMarkers extends React.Component{
 
 async handleSelect (address) {
     await geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => this.setState({lat: latLng.lat, lng: latLng.lng, address}))
-      .catch(error => console.error('Error', error));
-
+    const results = await geocodeByAddress(address)
+    const  latLng = await getLatLng(results[0])
+    this.setState({lat: latLng.lat, lng: latLng.lng, address})
   };
 
   handleChecked(event){
@@ -221,7 +220,7 @@ async handleSelect (address) {
               <label className="form-check-label" htmlFor="vocational training">vocational training</label>
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">Save</button>
+          <button type="submit" className="btn btn-primary" onClick={() => this.setState({show: false})}>Save</button>
         </form>
       </Modal.Body>
     </Modal>

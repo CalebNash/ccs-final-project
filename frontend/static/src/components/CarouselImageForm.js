@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie'
 
-class EditBanner extends React.Component {
+class CarouselImageForm extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -43,7 +43,7 @@ class EditBanner extends React.Component {
        };
 
        const handleError = (err) => console.warn(err);
-       const responce = await fetch('/api/v1/banner_images/', options);
+       const responce = await fetch('/api/v1/image_carousel/', options);
        const data = await responce.json().catch(handleError);
        console.log(data);
        if(data.key){
@@ -69,4 +69,6 @@ class EditBanner extends React.Component {
   }
 }
 
-export default EditBanner;
+
+
+export default CarouselImageForm;

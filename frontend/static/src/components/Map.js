@@ -8,10 +8,13 @@ class Map extends React.Component {
       locations: [],
       map: {},
       maps: {},
+      categories: [],
     }
     this.renderMarkers = this.renderMarkers.bind(this);
     this.addMarkers = this.addMarkers.bind(this);
     this.addToState = this.addToState.bind(this);
+    this.handleChecked = this.handleChecked.bind(this);
+    this.filterMarkers = this.filterMarkers.bind(this);
   }
 
 
@@ -23,9 +26,40 @@ class Map extends React.Component {
     await this.setState({map: map});
     await this.setState({maps: maps});
     this.addMarkers()
-
   }
 
+  handleChecked(event){
+    let categories = this.state.categories;
+    let check = event.target.checked;
+    let checked_category = event.target.value;
+    if(check){
+      this.setState({
+        categories: [...this.state.categories, checked_category]
+      })
+    }else{
+      var index = categories.indexOf(checked_category);
+      if (index > -1) {
+        categories.splice(index, 1);
+          this.setState({
+            categories: categories
+          })
+      }
+    }
+  }
+
+
+  filterMarkers(event){
+    event.preventDefault()
+    this.setState({locations: []});
+    // const categories = this.state.categories;
+    // const locations = this.state.locations.filter(
+    //   location => location.categories.some(item => categories.includes(item))
+    // )
+    // console.log(locations);
+    // for(var i = 0; i < locations.length; i++){
+    //   this.renderMarkers(locations[i]);
+    // }
+  }
 
   addMarkers(){
     const locations = this.state.locations;
@@ -41,12 +75,12 @@ class Map extends React.Component {
     const intLat = parseFloat(location.lat);
     const intLng = parseFloat(location.lng);
      var infoWindow = new maps.InfoWindow({
-       content: `<h5>${location.name}</h5><p>hours: ${location.hours}</p> <a href="https://www.google.com/maps/place/${location.address}">${location.address}</a>`
+       content: `<h5>${location.name}</h5><p>hours: ${location.hours}</p><a style = 'display: block' href="${location.website}">${location.website}</a> <a href="https://www.google.com/maps/place/${location.address}">${location.address}</a>`
      });
      let marker = new maps.Marker({
      position: { lat: intLat, lng: intLng },
      map,
-     title: 'Desiard Street Shelter',
+     title: location.name,
      });
      marker.addListener('click', function(){
        infoWindow.open(map, marker)
@@ -57,8 +91,45 @@ class Map extends React.Component {
 
 
   render() {
+    console.log(this.state.maps);
+    console.log('map: ',this.state.map);
    return (
-     <div>
+     <div className='row locations-list-row'>
+       <div id='locations-list' className='col-2 card'>
+       <form className="col-12 mb-5 form location-form" onSubmit={(event)=> this.filterMarkers(event)}>
+         <div className="form-group">
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="overnight" value="overnight" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="overnight">overnight</label>
+           </div>
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="food" value="food" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="food">food</label>
+           </div>
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="mental health" value="mental health" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="mental health">mental health</label>
+           </div>
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="medicine" value="medicine" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="medicine">medicine</label>
+           </div>
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="financial assistance" value="financial assistance" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="financial assistance">financial assistance</label>
+           </div>
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="long term housing" value="long term housing" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="long term housing">long term housing</label>
+           </div>
+           <div className="form-check form-check-block">
+             <input className="form-check-input" type="checkbox" id="vocational training" value="vocational training" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="vocational training">vocational training</label>
+           </div>
+         </div>
+         <button type="submit" className="btn btn-primary">Save</button>
+       </form>
+       </div>
        <div style={{ height: '400px', width: '400px' }}>
         <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY}}
