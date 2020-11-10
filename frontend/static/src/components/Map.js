@@ -60,7 +60,7 @@ class Map extends React.Component {
 
     if(categories.length > 0){
       const locations = this.state.locations.filter(
-        location => location.categories.some(item => categories.includes(item))
+        location => categories.every(item => location.categories.includes(item))
       )
       console.log(locations);
       for(var i = 0; i < locations.length; i++){
