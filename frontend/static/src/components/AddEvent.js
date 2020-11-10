@@ -1,25 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie'
 
-
-
-
-function EventItem(props){
-  return(
-
-      <div className='list-group col-3' onClick={() => props.choose(props.recipe.id)}>
-        <div className='list-group-item event-preview'>
-        <img src={props.event.image} alt=""/>
-        </div>
-        <p className='recipe-name'>{props.event.title}</p>
-      </div>
-  )
-}
-
-
-
-
-class EditEvent extends React.Component {
+class AddEvent extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -27,19 +9,10 @@ class EditEvent extends React.Component {
       preview: '',
       title: '',
       body: '',
-      events: [],
-      pickedEvent: {},
     }
     this.handleImage = this.handleImage.bind(this);
     this.addImage = this.addImage.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  async componentDidMount(){
-    const response = await fetch('api/v1/events/');
-    const data = await response.json();
-    this.setState({events:data});
-    console.log(data);
   }
 
   handleChange(event){
@@ -71,7 +44,7 @@ class EditEvent extends React.Component {
        formData.append('body', this.state.body)
        console.log(formData);
        const options = {
-         method: 'PUT',
+         method: 'POST',
          headers: {
            'X-CSRFToken': Cookies.get('csrftoken'),
          },
@@ -89,12 +62,9 @@ class EditEvent extends React.Component {
      }
 
   render() {
-      const events = this.state.events.map(event => <EventItem key={event.id} event={event}/>)
+
     return (
       <React.Fragment>
-      <div className='row'>
-        {events}
-      </div>
       <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
         <div className="form-group">
           <label htmlFor="image">Add picture</label>
@@ -112,4 +82,4 @@ class EditEvent extends React.Component {
   }
 }
 
-export default EditEvent;
+export default AddEvent;

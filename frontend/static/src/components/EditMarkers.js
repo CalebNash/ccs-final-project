@@ -137,7 +137,7 @@ async handleSelect (address) {
     return(
       <React.Fragment>
       <div className='row locations-list-row'>
-        <div id='locations-list' className='col-8 card'>
+        <div id='locations-list' className='col-12 card'>
             {locations}
         </div>
       </div>

@@ -9,6 +9,7 @@ class Map extends React.Component {
       map: {},
       maps: {},
       categories: [],
+      markers: [],
     }
     this.renderMarkers = this.renderMarkers.bind(this);
     this.addMarkers = this.addMarkers.bind(this);
@@ -48,18 +49,29 @@ class Map extends React.Component {
   }
 
 
-  filterMarkers(event){
-    event.preventDefault()
-    this.setState({locations: []});
-    // const categories = this.state.categories;
-    // const locations = this.state.locations.filter(
-    //   location => location.categories.some(item => categories.includes(item))
-    // )
-    // console.log(locations);
-    // for(var i = 0; i < locations.length; i++){
-    //   this.renderMarkers(locations[i]);
-    // }
+  async filterMarkers(event){
+    event.preventDefault();
+    const markers = [...this.state.markers];
+    for(let i = 0; i <markers.length; i ++){
+      markers[i].setMap(null);
+    }
+    await this.setState({markers: []})
+    const categories = this.state.categories;
+
+    if(categories.length > 0){
+      const locations = this.state.locations.filter(
+        location => location.categories.some(item => categories.includes(item))
+      )
+      console.log(locations);
+      for(var i = 0; i < locations.length; i++){
+        this.renderMarkers(locations[i]);
+      }
+    }else{
+      console.log('hello');
+      this.addMarkers();
+    }
   }
+
 
   addMarkers(){
     const locations = this.state.locations;
@@ -85,14 +97,18 @@ class Map extends React.Component {
      marker.addListener('click', function(){
        infoWindow.open(map, marker)
      })
+
+      const markers = [...this.state.markers];
+      markers.push(marker);
+      this.setState({markers});
      return marker;
   };
 
 
 
   render() {
-    console.log(this.state.maps);
-    console.log('map: ',this.state.map);
+    // console.log(this.state.maps);
+    console.log('markers', this.state.markers);
    return (
      <div className='row locations-list-row'>
        <div id='locations-list' className='col-2 card'>
