@@ -1,19 +1,18 @@
 import React from 'react';
 import Cookies from 'js-cookie'
 import {Modal} from 'react-bootstrap';
-import AddEvent from './AddEvent'
+import AddCarouselImage from './AddCarouselImage'
 
 
 
 
-function EventItem(props){
+function ImageItem(props){
   return(
 
-      <div className='list-group col-lg-3 col-12' onClick={() => props.chooseEvent(props.event.id)}>
+      <div className='list-group col-lg-3 col-12' onClick={() => props.chooseImage(props.image.id)}>
         <div className='list-group-item event-preview'>
-        <img src={props.event.image} alt=""/>
+        <img src={props.image.image} alt=""/>
         </div>
-        <p className='recipe-name'>{props.event.title}</p>
       </div>
   )
 }
@@ -27,24 +26,21 @@ class EditEvent extends React.Component {
     this.state = {
       image: null,
       preview: '',
-      title: '',
-      body: '',
-      events: [],
-      pickedEvent: {},
+      images: [],
+      pickedImage: {},
       show: false,
     }
     this.handleImage = this.handleImage.bind(this);
     this.addImage = this.addImage.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.chooseEvent = this.chooseEvent.bind(this);
+    this.chooseImage = this.chooseImage.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
   }
 
   async componentDidMount(){
-    const response = await fetch('api/v1/events/');
+    const response = await fetch('api/v1/image_carousel/');
     const data = await response.json();
-    this.setState({events:data});
+    this.setState({images:data});
     console.log(data);
   }
 
@@ -52,25 +48,19 @@ class EditEvent extends React.Component {
     this.setState({show: false});
   }
 
-  chooseEvent(display) {
-    const eventId = this.state.events.findIndex(event => event.id === display)
-    this.setState({pickedEvent: this.state.events[eventId]})
+  chooseImage(display) {
+    const imageId = this.state.images.findIndex(image => image.id === display)
+    this.setState({pickedImage: this.state.images[imageId]})
     this.setState({show: true});
 
 }
 
-  handleChange(event){
-    const pickedEvent = {...this.state.pickedEvent};
-    pickedEvent[event.target.name] = event.target.value;
-    this.setState({pickedEvent});
-  }
-
 
   handleImage(e){
       let file = e.target.files[0];
-      const pickedEvent = {...this.state.pickedEvent};
-      pickedEvent.image = file;
-      this.setState({pickedEvent});
+      const pickedImage = {...this.state.pickedImage};
+      pickedImage.image = file;
+      this.setState({pickedImage});
 
       let reader = new FileReader();
 
@@ -86,9 +76,7 @@ class EditEvent extends React.Component {
        e.preventDefault();
        this.handleClose();
        let formData = new FormData();
-       formData.append('image', this.state.pickedEvent.image)
-       formData.append('title', this.state.pickedEvent.title)
-       formData.append('body', this.state.pickedEvent.body)
+       formData.append('image', this.state.pickedImage.image)
        console.log(formData);
        const options = {
          method: 'PUT',
@@ -99,7 +87,7 @@ class EditEvent extends React.Component {
        };
 
        const handleError = (err) => console.warn(err);
-       const responce = await fetch(`/api/v1/events/${this.state.pickedEvent.id}/`, options);
+       const responce = await fetch(`/api/v1/image_carousel/${this.state.pickedImage.id}/`, options);
        const data = await responce.json().catch(handleError);
        console.log('data key: ', data.key);
          this.setState({show: false});
@@ -116,7 +104,7 @@ class EditEvent extends React.Component {
         };
 
         const handleError = (err) => console.warn(err);
-        const responce = await fetch(`/api/v1/events/${this.state.pickedEvent.id}/`, options);
+        const responce = await fetch(`/api/v1/image_carousel/${this.state.pickedImage.id}/`, options);
         const data = await responce.json().catch(handleError);
         console.log(data);
 
@@ -127,27 +115,23 @@ class EditEvent extends React.Component {
 
 
   render() {
-      const events = this.state.events.map(event => <EventItem key={event.id} event={event} chooseEvent={this.chooseEvent}/>)
+      const images = this.state.images.map(image => <ImageItem key={image.id} image={image} chooseImage={this.chooseImage}/>)
     return (
       <React.Fragment>
       <div className='row event-edit-row'>
-        <AddEvent/>
-        {events}
+        <AddCarouselImage/>
+        {images}
       </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>Add Event</Modal.Header>
+        <Modal.Header closeButton>Add Image</Modal.Header>
         <Modal.Body>
           <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
             <div className="form-group">
               <label htmlFor="image">Add picture</label>
               <input type='file' id="image" name="image" onChange={this.handleImage}/>
               <img className='image-preview' src={this.state.preview} alt=''/>
-              </div>
-              <label htmlFor="title">Title</label>
-              <input type="text" className="form-control" id="title" name="title" value={this.state.pickedEvent.title} onChange={this.handleChange}/>
-              <label htmlFor="body">Body</label>
-              <textarea rows='5' type="text" className="form-control" id="body" name="body" value={this.state.pickedEvent.body} onChange={this.handleChange}/>
-            <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Add Event</button>
+            </div>
+            <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Add Image</button>
             <button type="button" className="btn btn-primary mt-2" onClick={(e) => this.deleteEvent(e)}>Delete</button>
           </form>
         </Modal.Body>

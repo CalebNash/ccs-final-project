@@ -37,25 +37,25 @@ class CurrentNeeds extends React.Component{
       <div>
         <h1>Current Needs</h1>
         <div className='row needs-row'>
-          <div className='card'>
+          <div className='card col-12 col-md-3'>
             <h5>Miscellaneous</h5>
             <ul>
             {miscellaneous}
             </ul>
           </div>
-          <div className='card'>
+          <div className='card col-12 col-md-3'>
             <h5>Paper Products</h5>
             <ul>
             {paperProducts}
             </ul>
           </div>
-          <div className='card'>
+          <div className='card col-12 col-md-3'>
             <h5>Hygiene Products</h5>
             <ul>
             {hygieneProducts}
             </ul>
           </div>
-          <div className='card'>
+          <div className='card col-12 col-md-3'>
             <h5>Cleaning Items</h5>
             <ul>
             {cleaningItems}

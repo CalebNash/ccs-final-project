@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie'
+import {Modal} from 'react-bootstrap';
 
 class AddEvent extends React.Component {
   constructor(props){
@@ -9,10 +10,16 @@ class AddEvent extends React.Component {
       preview: '',
       title: '',
       body: '',
+      show: false,
     }
     this.handleImage = this.handleImage.bind(this);
     this.addImage = this.addImage.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClose(){
+    this.setState({show: false})
   }
 
   handleChange(event){
@@ -65,18 +72,26 @@ class AddEvent extends React.Component {
 
     return (
       <React.Fragment>
-      <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
-        <div className="form-group">
-          <label htmlFor="image">Add picture</label>
-          <input type='file' id="image" name="image" onChange={this.handleImage}/>
-          <img className='image-preview' src={this.state.preview} alt=''/>
-          </div>
-          <label htmlFor="title">Title</label>
-          <input type="text" className="form-control" id="title" name="title" value={this.state.title} onChange={this.handleChange}/>
-          <label htmlFor="body">Body</label>
-          <textarea rows='5' type="text" className="form-control" id="body" name="body" value={this.state.body} onChange={this.handleChange}/>
-        <button type="submit" className="btn btn-primary mt-2">Add Event</button>
-      </form>
+      <button className=' col-lg-3 col-12 card  add-event' onClick={() => this.setState({show: true})}>
+        <i className="fas fa-plus event-plus-icon"></i>
+      </button>
+      <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
+        <Modal.Header closeButton>Add Event</Modal.Header>
+        <Modal.Body>
+          <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
+            <div className="form-group">
+              <label htmlFor="image">Add picture</label>
+              <input type='file' id="image" name="image" onChange={this.handleImage}/>
+              <img className='image-preview' src={this.state.preview} alt=''/>
+              </div>
+              <label htmlFor="title">Title</label>
+              <input type="text" className="form-control" id="title" name="title" value={this.state.title} onChange={this.handleChange}/>
+              <label htmlFor="body">Body</label>
+              <textarea rows='5' type="text" className="form-control" id="body" name="body" value={this.state.body} onChange={this.handleChange}/>
+            <button type="submit" className="btn btn-primary mt-2">Add Event</button>
+          </form>
+        </Modal.Body>
+      </Modal>
       </React.Fragment>
     )
   }

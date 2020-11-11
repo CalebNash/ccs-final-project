@@ -1,16 +1,24 @@
 import React from 'react';
 import Cookies from 'js-cookie'
+import {Modal} from 'react-bootstrap';
 
-class CarouselImageForm extends React.Component {
+class AddCarouselImage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       image: null,
       preview: '',
+      show: false,
     }
     this.handleImage = this.handleImage.bind(this);
     this.addImage = this.addImage.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
+
+  handleClose(){
+    this.setState({show: false})
+  }
+
 
 
   handleImage(e){
@@ -56,19 +64,25 @@ class CarouselImageForm extends React.Component {
 
     return (
       <React.Fragment>
-      <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
-        <div className="form-group">
-          <label htmlFor="image">Add picture</label>
-          <input type='file' id="image" name="image" onChange={this.handleImage}/>
-          <img className='image-preview' src={this.state.preview} alt=''/>
-        </div>
-        <button type="submit" className="btn btn-primary mt-2">Add Image</button>
-      </form>
+      <button className=' col-lg-3 col-12  add-event' onClick={() => this.setState({show: true})}>
+        <i className="fas fa-plus event-plus-icon"></i>
+      </button>
+      <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
+        <Modal.Header closeButton>Add Event</Modal.Header>
+        <Modal.Body>
+        <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
+          <div className="form-group">
+            <label htmlFor="image">Add picture</label>
+            <input type='file' id="image" name="image" onChange={this.handleImage}/>
+            <img className='image-preview' src={this.state.preview} alt=''/>
+          </div>
+          <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Add Image</button>
+        </form>
+        </Modal.Body>
+      </Modal>
       </React.Fragment>
     )
   }
 }
 
-
-
-export default CarouselImageForm;
+export default AddCarouselImage;

@@ -151,3 +151,19 @@ object-fit:scale-down;
   right: 0;
   bottom: 80px;
 }
+
+.add-event{
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+
+.event-plus-icon{
+  font-size: 100px;
+  color: #fff;
+}
+
+
+.employee-page-row{
+  justify-content: space-between;
+}
