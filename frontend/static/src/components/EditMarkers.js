@@ -59,10 +59,10 @@ async handleSelect (address) {
 
 
   handleEdit(event) {
-  const pickedLocation = {...this.state.pickedLocation};
-  pickedLocation[event.target.name] = event.target.value;
-  this.setState({pickedLocation});
-}
+    const pickedLocation = {...this.state.pickedLocation};
+    pickedLocation[event.target.name] = event.target.value;
+    this.setState({pickedLocation});
+  }
 
 
   editChecked(event){
