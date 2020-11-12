@@ -159,7 +159,7 @@
 .home-body{
   justify-content: center;
   margin-top: 30px;
-  font-family: Arial;
+  font-family: "Times New Roman";
 
 }
 
@@ -181,4 +181,39 @@
   padding-bottom: 15px;
   font-size: 18px;
   padding-right: 15px;
+}
+
+/* Current Needs Page */
+
+.current-needs-body{
+  justify-content: center;
+  margin-top: 40px;
+  font-family: 'Cormorant Garamond';
+
+}
+
+.current-needs-page-name{
+  font-size: 44px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.current-needs-don-app{
+  font-size: 30px;
+  text-align: center;
+}
+
+.current-needs-page-para{
+  font-size: 22px;
+  line-height: 2;
+  margin-bottom: 30px;
+}
+
+.current-needs-body ul{
+  padding: 5px;
+  margin: 0;
+}
+
+.amazon-button{
+  background-color: #F08A3A
 }

@@ -190,7 +190,7 @@ EMAIL_HOST_USER = 'calebnash40@gmail.com'
 EMAIL_HOST_PASSWORD = 'iqwiawniukdsgpuc'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Renewal Center <noreply@codingwithmitch.com>'
+DEFAULT_FROM_EMAIL = 'Renewal Center'
 
 # https://django-rest-auth.readthedocs.io/en/latest/configuration.html
 REST_AUTH_SERIALIZERS = {

@@ -54,9 +54,9 @@ class Register extends React.Component{
         <input type="text" className="form-control" id="username" name="username" value={this.state.title} onChange={this.handleChange}/>
         <label htmlFor="title">email</label>
         <input type="email" className="form-control" id="email" name="email" value={this.state.title} onChange={this.handleChange}/>
-        <label htmlFor="title">password1</label>
+        <label htmlFor="title">password</label>
         <input type="text" className="form-control" id="password1" name="password1" value={this.state.title} onChange={this.handleChange}/>
-        <label htmlFor="title">password2</label>
+        <label htmlFor="title">re-enter password</label>
         <input type="text" className="form-control" id="password2" name="password2" value={this.state.title} onChange={this.handleChange}/>
       </div>
       <button type="submit" className="btn btn-primary">Save</button>
