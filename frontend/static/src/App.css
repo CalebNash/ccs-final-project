@@ -7,9 +7,9 @@
 }
 
 .banner{
-  background-image:url('./images/banner.png');
+  background-image:url('./images/banner-image.jpeg');
   width: 100%;
-  height: 200px;
+  height: 300px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -179,4 +179,6 @@
   font-weight: bold;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-size: 18px;
+  padding-right: 15px;
 }

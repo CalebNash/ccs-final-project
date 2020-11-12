@@ -184,7 +184,13 @@ STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'frontend/static/build/static'), )
 SITE_ID = 1
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'calebnash40@gmail.com'
+EMAIL_HOST_PASSWORD = 'iqwiawniukdsgpuc'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Renewal Center <noreply@codingwithmitch.com>'
 
 # https://django-rest-auth.readthedocs.io/en/latest/configuration.html
 REST_AUTH_SERIALIZERS = {

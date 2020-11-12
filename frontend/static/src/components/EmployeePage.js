@@ -3,8 +3,9 @@ import EditEvent from './EditEvent';
 import EditMarkers from './EditMarkers';
 import AddMarkers from './AddMarkers';
 import NeedsForm from './NeedsForm';
+import EditNeeds from './EditNeeds';
 import EditCarouselImage from './EditCarouselImage';
-import Cropping from './Cropping'
+//import Cropping from './Cropping'
 
 
 class EmployeePage extends React.Component{
@@ -31,7 +32,7 @@ class EmployeePage extends React.Component{
     }else if(page === 'Locations'){
       display = <React.Fragment><EditMarkers/><AddMarkers/></React.Fragment>;
     }else if(page === 'Current Needs'){
-      display = <React.Fragment><Cropping/></React.Fragment>;
+      display = <React.Fragment><NeedsForm/><EditNeeds/></React.Fragment>;
     }
     return(
       <div className=''>
