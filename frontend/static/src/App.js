@@ -71,7 +71,7 @@ class App extends React.Component{
     return (
       <React.Fragment>
       <div className='banner'></div>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg site-navbar">
         <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
         <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
         <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>

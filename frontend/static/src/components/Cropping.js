@@ -36,4 +36,6 @@ class Cropping extends React.Component {
   }
 }
 
+
+
 export default Cropping;
