@@ -11,7 +11,7 @@ class GetHelp extends React.Component {
   render() {
     return (
       <React.Fragment>
-      <div className='container'>
+      <div className='container get-help-body'>
       <Map/>
       </div>
       </React.Fragment>

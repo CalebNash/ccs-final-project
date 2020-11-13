@@ -23,6 +23,8 @@
 
 
 .site-navbar{
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .nav-phone{
@@ -259,6 +261,12 @@
 
 .amazon-button{
   background-color: #F08A3A
+}
+
+/* Get Help */
+
+.get-help-body{
+  margin-bottom: 100px;
 }
 
 

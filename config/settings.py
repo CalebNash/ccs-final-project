@@ -185,9 +185,12 @@ SITE_ID = 1
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VARIFICATION = 'mandatory'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'calebnash40@gmail.com'
-EMAIL_HOST_PASSWORD = 'iqwiawniukdsgpuc'
+EMAIL_HOST_PASSWORD = 'Riptide_7070'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Renewal Center'
