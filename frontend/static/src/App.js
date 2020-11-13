@@ -8,6 +8,8 @@ import EmployeePage from './components/EmployeePage.js';
 import CurrentNeeds from './components/CurrentNeeds.js';
 import {Route, Switch, Link, withRouter} from 'react-router-dom';
 import './App.css';
+import logo from "./images/logo.png";
+import { bubble as Menu } from 'react-burger-menu';
 
 
 class App extends React.Component{
@@ -18,7 +20,17 @@ class App extends React.Component{
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleStateChange = this.handleStateChange.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
+
+
+    handleStateChange(state) {
+      this.setState({menuOpen: state.isOpen})
+    }
+    closeMenu() {
+      this.setState({menuOpen: false})
+    }
 
   async handleLogout(e){
     e.preventDefault();
@@ -38,9 +50,6 @@ class App extends React.Component{
     if(data.detail === "Successfully logged out."){
       Cookies.remove('Authorization');
       this.props.history.push('/');
-      //this.setState({page: 'home'});
-      //this.setState({loggedIn: false});
-      //localStorage.removeItem('is_staff');
     }
 
   }
@@ -70,8 +79,9 @@ class App extends React.Component{
 
     return (
       <React.Fragment>
-      <div className='banner'></div>
-      <nav className="navbar navbar-expand-lg site-navbar">
+      <div className='banner'><img className='logo' src={logo} alt=""/></div>
+      <nav className="navbar navbar-expand-lg site-navbar nav-phone">
+      <Menu isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
         <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
         <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
         <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
@@ -81,6 +91,20 @@ class App extends React.Component{
           ?<button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
           :<Login handleLogin = {this.handleLogin}/>
         }
+        </Menu>
+        <a className='btn btn-primary' href="https://www.paypal.com/donate?token=NArna_n-Qhcakjj0wSRXNjVY5fYyuF59iITqXmFIhGrtuP-2duHjzEoFNNqtH7j-p4ASNdl3VVZQ-YVf">Donate</a>
+      </nav>
+      <nav className="navbar navbar-expand-lg site-navbar nav-full">
+        <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
+        <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
+        <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
+        <Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link>
+        <Link to='/current-needs'><button className="btn  menu-button"type="button">Current Needs</button></Link>
+        { this.state.loggedIn
+          ?<button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
+          :<Login handleLogin = {this.handleLogin}/>
+        }
+        <a className='btn btn-primary' href="https://www.paypal.com/donate?token=NArna_n-Qhcakjj0wSRXNjVY5fYyuF59iITqXmFIhGrtuP-2duHjzEoFNNqtH7j-p4ASNdl3VVZQ-YVf">Donate</a>
       </nav>
         <Switch>
           <Route path='/' exact component={Home}/>
