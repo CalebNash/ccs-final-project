@@ -6,6 +6,7 @@ import Home from './components/Home.js';
 import GetHelp from './components/GetHelp.js';
 import EmployeePage from './components/EmployeePage.js';
 import CurrentNeeds from './components/CurrentNeeds.js';
+import PasswordReset from './components/PasswordReset';
 import {Route, Switch, Link, withRouter} from 'react-router-dom';
 import './App.css';
 import logo from "./images/logo.png";
@@ -112,6 +113,7 @@ class App extends React.Component{
           <Route path='/gethelp' component={GetHelp}/>
           <Route path='/employee' component={EmployeePage}/>
           <Route path='/current-needs' component={CurrentNeeds}/>
+          <Route path='/reset/:uid/:token' component={PasswordReset}/>
         </Switch>
       </React.Fragment>
     )
