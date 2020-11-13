@@ -82,13 +82,13 @@ class App extends React.Component{
       <div className='banner'><img className='logo' src={logo} alt=""/></div>
       <nav className="navbar navbar-expand-lg site-navbar nav-phone">
       <Menu isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
-        <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
-        <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
-        <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
-        <Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link>
-        <Link to='/current-needs'><button className="btn  menu-button"type="button">Current Needs</button></Link>
+        <Link to='/'><button onClick={() => this.closeMenu()} className="btn menu-button"type="button">Home</button></Link>
+        <Link to='/register'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Register</button></Link>
+        <Link to='/gethelp'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Get Help</button></Link>
+        <Link to='/employee'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Employee</button></Link>
+        <Link to='/current-needs'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Current Needs</button></Link>
         { this.state.loggedIn
-          ?<button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
+          ?<button className="btn  menu-button"type="button" onClick={this.handleLogout }>Logout</button>
           :<Login handleLogin = {this.handleLogin}/>
         }
         </Menu>
