@@ -105,7 +105,11 @@ class App extends React.Component{
           ?<button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
           :<Login handleLogin = {this.handleLogin}/>
         }
-        <a className='btn btn-primary' href="https://www.paypal.com/donate?token=NArna_n-Qhcakjj0wSRXNjVY5fYyuF59iITqXmFIhGrtuP-2duHjzEoFNNqtH7j-p4ASNdl3VVZQ-YVf">Donate</a>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick"/>
+          <input type="hidden" name="hosted_button_id" value="9A6WPPRFGB6K2"/>
+          <button type="submit" className='btn btn-primary' border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">Donate</button>  
+        </form>
       </nav>
         <Switch>
           <Route path='/' exact component={Home}/>
