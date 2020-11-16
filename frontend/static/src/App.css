@@ -40,16 +40,18 @@
 
 
 
-/* .carousel-inner {
-  max-height: 400px;
+.carousel-inner {
+  max-height: 350px;
+  min-height: 350px;
   img {
-    max-height: 400px;
+    max-height: 350px;
+    min-height: 350px;
   }
 }
 
 .carousel-indicators img {
   max-width: 100px;
-} */
+}
 
 /* .carousel{
   max-height: 400px;
@@ -105,7 +107,7 @@
   }
 }
 
-@media (max-width: 796px) {
+@media (max-width: 768px) {
   .location-form-modal{
       width: 90vw;
       max-width: 90vw;
@@ -133,7 +135,21 @@
   .nav-full{
     display: none;
   }
+
+  /* Home Page */
+
+  .mission-statement{
+    text-align: left;
+    padding-left: 20px;
+  }
+
+
+  .mission-title h1{
+    font-size: 44px;
+  }
 }
+
+
 
 @media (max-width: 600px) {
   .login-modal{
@@ -197,25 +213,69 @@
 
 /* Home Page */
 .home-body{
-  justify-content: center;
   margin-top: 30px;
-  font-family: 'Cormorant Garamond';
-  margin-left: 15px;
-  margin-right: 15px;
 
 }
 
 .mission-statement{
+  text-align: center;
+  padding: 25px 20px;
 
 }
 
-.mission-statement h1{
+.mission-title h1{
+  margin-top: 120px;
+  padding-left: 30px;
+  font-weight: 650;
+  font-size: 32px;
+}
+
+.mission-statement-head{
+  font-weight: 650;
+  font-size: 26px;
+}
+
+.mission-statement-para{
+  font-size: 20px;
+  color: #666666
+}
+
+.img-caro {
+background-color: #83AEC5;
+justify-content: center;
+}
+
+
+.focus-title{
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+.focus-title h1{
+  font-weight: 650;
+  font-size: 36px;
+}
+
+.focus-body ol{
+  font-size: 20px;
+  color: #666666
+}
+
+.focus-body h3{
+  font-weight: 650;
+  font-size: 26px;
+  margin: 20px;
+}
+
+
+/* .mission-statement h1{
   color: #273D63;
   font-size: 50px;
   font-weight: bold;
-}
+} */
 
-.mission-statement ol{
+/* .mission-statement ol{
   background-color: #B4C5D5;
   color: #273D63;
   font-weight: bold;
@@ -223,7 +283,7 @@
   padding-bottom: 15px;
   font-size: 18px;
   padding-right: 15px;
-}
+} */
 
 /* Current Needs Page */
 
