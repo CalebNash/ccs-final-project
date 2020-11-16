@@ -23,8 +23,8 @@
 
 
 .site-navbar{
-  margin-top: 10px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .nav-phone{
@@ -35,31 +35,6 @@
   /* height: 400px; */
   width: 200px;
 }
-
-
-
-
-
-.carousel-inner {
-  max-height: 350px;
-  min-height: 350px;
-  img {
-    max-height: 350px;
-    min-height: 350px;
-  }
-}
-
-.carousel-indicators img {
-  max-width: 100px;
-}
-
-/* .carousel{
-  max-height: 400px;
-}
-
-.​carousel-inner .item{
-  height:500px;
-} */
 
 /* #employee-pages{
   justify-content:center;
@@ -211,23 +186,70 @@
   justify-content: space-between;
 }
 
-/* Home Page */
-.home-body{
-  margin-top: 30px;
+/* -----------------------------Home Page-------------------------------- */
 
+
+
+@media (min-width: 769px) {
+  .mission-statement{
+    text-align: center;
+    padding: 25px 20px;
+
+  }
+
+  .approach-example1{
+    padding: 10px;
+    font-weight: 650;
+    font-size: 22px;
+    color: #fff;
+    background-color: #1F345E;
+    border-radius: 30px;
+    align-self: center;
+    display: inline-block;
+  }
+
+  .approach-example2{
+    padding: 10px;
+    font-weight: 650;
+    font-size: 18px;
+    color: #fff;
+    background-color: #1F345E;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .approach-example3{
+    padding: 10px;
+    font-weight: 650;
+    font-size: 18px;
+    color: #fff;
+    background-color: #1F345E;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .approach-arrow{
+    font-size: 30px;
+    color: #41959A;
+    align-self: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .mission-statement{
-  text-align: center;
   padding: 25px 20px;
 
 }
 
-.mission-title h1{
-  margin-top: 120px;
-  padding-left: 30px;
+.mission-title {
+  padding: 20px 30px;
   font-weight: 650;
-  font-size: 32px;
+  font-size: 44px;
+  color: #fff;
+  background-color: #61478F;
 }
 
 .mission-statement-head{
@@ -240,32 +262,113 @@
   color: #666666
 }
 
+
+
+
 .img-caro {
-background-color: #83AEC5;
 justify-content: center;
+background-color: #F5F5F5;
+margin-top: 50px;
+margin-bottom: 50px;
 }
 
 
 .focus-title{
-  margin-top: 50px;
-  text-align: center;
+  padding: 20px 30px;
+  font-weight: 650;
+  font-size: 44px;
+  background-color: #5DB6C9;
+  color: #fff;
 }
 
 
-.focus-title h1{
-  font-weight: 650;
-  font-size: 36px;
+.focus-body{
+  padding-top: 25px;
 }
 
 .focus-body ol{
   font-size: 20px;
-  color: #666666
+  color: #666666;
+  margin-left: 20px;
 }
 
 .focus-body h3{
   font-weight: 650;
   font-size: 26px;
   margin: 20px;
+  margin-left: 0px;
+}
+
+.approach-title {
+  padding: 20px 30px;
+  font-weight: 650;
+  font-size: 44px;
+  color: #fff;
+  background-color: #1F345E;
+}
+
+.approach-container{
+  margin-bottom: 50px;
+}
+
+.approach-body{
+  padding-top: 25px;
+}
+
+.approach-para{
+  font-size: 20px;
+  color: #666666;
+  padding:10px;
+}
+
+.approach-example{
+  margin-top: 50px;
+}
+.approach-example-body{
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+.approach-example1{
+  padding: 10px;
+  font-weight: 650;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1F345E;
+  border-radius: 30px;
+  align-self: center;
+  display: inline-block;
+}
+
+.approach-example2{
+  padding: 10px;
+  font-weight: 650;
+  font-size: 14px;
+  color: #fff;
+  background-color: #1F345E;
+  border-radius: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.approach-example3{
+  padding: 10px;
+  font-weight: 650;
+  font-size: 14px;
+  color: #fff;
+  background-color: #1F345E;
+  border-radius: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.approach-arrow{
+  font-size: 20px;
+  color: #41959A;
+  align-self: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 }
 
 
