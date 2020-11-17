@@ -111,41 +111,7 @@ class Map extends React.Component {
     console.log('markers', this.state.markers);
    return (
      <div className='row locations-list-row'>
-       <div id='locations-list' className='col-12 col-md-3 card'>
-       <form className="col-12 mb-5 form location-form" onSubmit={(event)=> this.filterMarkers(event)}>
-         <div className="form-group">
-           <div className="form-check locations  location-filters">
-             <input className="form-check-input" type="checkbox" id="overnight" value="overnight" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="overnight">overnight</label>
-           </div>
-           <div className="form-check location-filters">
-             <input className="form-check-input" type="checkbox" id="food" value="food" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="food">food</label>
-           </div>
-           <div className="form-check location-filters">
-             <input className="form-check-input" type="checkbox" id="mental health" value="mental health" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="mental health">mental health</label>
-           </div>
-           <div className="form-check location-filters">
-             <input className="form-check-input" type="checkbox" id="medicine" value="medicine" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="medicine">medicine</label>
-           </div>
-           <div className="form-check location-filters">
-             <input className="form-check-input" type="checkbox" id="financial assistance" value="financial assistance" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="financial assistance">financial assistance</label>
-           </div>
-           <div className="form-check location-filters">
-             <input className="form-check-input" type="checkbox" id="long term housing" value="long term housing" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="long term housing">long term housing</label>
-           </div>
-           <div className="form-check location-filters">
-             <input className="form-check-input" type="checkbox" id="vocational training" value="vocational training" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="vocational training">vocational training</label>
-           </div>
-         </div>
-         <button type="submit" className="btn btn-primary">Save</button>
-       </form>
-       </div>
+
        <div className='col-12 col-md-9'>
          <div style={{ height: '400px', width: '100%' }}>
           <GoogleMapReact
@@ -157,6 +123,45 @@ class Map extends React.Component {
           >
           </GoogleMapReact>
          </div>
+       </div>
+       <div id='locations-list' className='col-12 col-md-3 card'>
+       <form className="col-12 mb-5 form location-form" onSubmit={(event)=> this.filterMarkers(event)}>
+         <div className="form-group">
+           <div id='location-filters' className="form-check form-check-inline locations  location-filters">
+             <input className="form-check-input" type="checkbox" id="overnight" value="overnight" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="overnight">overnight</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="food" value="food" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="food">food</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="mental health" value="mental health" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="mental health">mental health</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="medicine" value="medicine" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="medicine">medicine</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="financial assistance" value="financial assistance" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="financial assistance">financial assistance</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="long term housing" value="long term housing" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="long term housing">long term housing</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="vocational training" value="vocational training" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="vocational training">vocational training</label>
+           </div>
+           <div id='location-filters' className="form-check form-check-inline location-filters">
+             <input className="form-check-input" type="checkbox" id="clothing" value="clothing" onChange={this.handleChecked} />
+             <label className="form-check-label" htmlFor="clothing">clothing</label>
+           </div>
+         </div>
+         <button type="submit" className="btn btn-primary">Save</button>
+       </form>
        </div>
      </div>
    );

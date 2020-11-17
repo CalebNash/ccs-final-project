@@ -1,6 +1,12 @@
 #menu-button{
   color: #fff;
 }
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
 .image-preview{
   height: 100px;
   width: 100px;
@@ -27,14 +33,20 @@
   padding-bottom: 15px;
 }
 
-.nav-phone{
-  display: none;
-}
+
 @media (min-width: 769px) {
   footer{
     background-color: black;
-    padding: 30px;
+    height: 5rem;
+    position: absolute;
+    left: 0;
+     bottom: 0;
+     width: 100%;
 
+  }
+
+  #content-wrap {
+    padding-bottom: 5rem;
   }
 
   .footer-body{
@@ -61,13 +73,25 @@
     font-size: 18px;
     color: gray;
   }
+
+  .nav-phone{
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   footer{
     background-color: black;
-    padding: 20px;
+    height: 4rem;
+    position: absolute;
+    left: 0;
+     bottom: 0;
+     width: 100%;
 
+  }
+
+  #content-wrap {
+    padding-bottom: 4rem;
   }
 
   .footer-body{
@@ -505,8 +529,32 @@ margin-bottom: 50px;
 
 /* Get Help */
 
+@media (min-width: 769px) {
+  #formcheck{
+    display: block;
+
+}
+}
+
 .get-help-body{
   margin-bottom: 100px;
+}
+
+.get-help-content{
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.get-help-header{
+  font-weight: 650;
+  font-size: 44px;
+}
+
+.get-help-inst-1{
+  font-size: 20px;
+  color: #666666;
+  padding-left: 20px;
+  margin-top: 30px;
 }
 
 

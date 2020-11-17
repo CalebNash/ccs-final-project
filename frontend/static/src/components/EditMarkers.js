@@ -249,6 +249,10 @@ async handleSelect (address) {
             <input className="form-check-input" type="checkbox" id="vocational training" value="vocational training" onChange={this.editChecked} checked ={this.state.pickedLocation.categories?.includes('vocational training')}/>
             <label className="form-check-label" htmlFor="vocational training">vocational training</label>
           </div>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="clothing" value="clothing" onChange={this.editChecked} checked ={this.state.pickedLocation.categories?.includes('clothing')}/>
+            <label className="form-check-label" htmlFor="clothing">clothing</label>
+          </div>
         </div>
         <button type="submit" className="btn btn-primary" onClick={() => this.setState({isEditing: false})}>Save</button>
       </form>

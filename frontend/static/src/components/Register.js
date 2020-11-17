@@ -1,5 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie'
+import {Modal} from 'react-bootstrap';
+
 
 class Register extends React.Component{
   constructor(props){
@@ -9,14 +11,20 @@ class Register extends React.Component{
       email: '',
       password1: '',
       password2: '',
+      show: false,
 
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
+  }
+
+  handleClose(){
+    this.setState({show: false})
   }
 
   async handleRegistration(e, obj){
@@ -47,21 +55,26 @@ class Register extends React.Component{
   render(){
     return(
       <div>
-      <h1>Register</h1>
-      <form className="col-4" onSubmit={(event) => this.handleRegistration(event, this.state)}>
-      <div className="form-group">
-        <label htmlFor="title">username</label>
-        <input type="text" className="form-control" id="username" name="username" value={this.state.title} onChange={this.handleChange}/>
-        <label htmlFor="title">email</label>
-        <input type="email" className="form-control" id="email" name="email" value={this.state.title} onChange={this.handleChange}/>
-        <label htmlFor="title">password</label>
-        <input type="text" className="form-control" id="password1" name="password1" value={this.state.title} onChange={this.handleChange}/>
-        <label htmlFor="title">re-enter password</label>
-        <input type="text" className="form-control" id="password2" name="password2" value={this.state.title} onChange={this.handleChange}/>
-      </div>
-      <button type="submit" className="btn btn-primary">Save</button>
-    </form>
-      </div>
+        <button className="btn"type="button" onClick={() =>{ this.props.closeMenu(); this.setState({show: true})}}>Register</button>
+        <Modal dialogClassName='login-modal' show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>Login</Modal.Header>
+          <Modal.Body>
+            <form className="" onSubmit={(event) => this.handleRegistration(event, this.state)}>
+            <div className="form-group">
+              <label htmlFor="title">username</label>
+              <input type="text" className="form-control" id="username" name="username" value={this.state.title} onChange={this.handleChange}/>
+              <label htmlFor="title">email</label>
+              <input type="email" className="form-control" id="email" name="email" value={this.state.title} onChange={this.handleChange}/>
+              <label htmlFor="title">password</label>
+              <input type="text" className="form-control" id="password1" name="password1" value={this.state.title} onChange={this.handleChange}/>
+              <label htmlFor="title">re-enter password</label>
+              <input type="text" className="form-control" id="password2" name="password2" value={this.state.title} onChange={this.handleChange}/>
+            </div>
+            <button type="submit" className="btn btn-primary" onClick={() => this.setState({show: false})}>Register</button>
+          </form>
+        </Modal.Body>
+      </Modal>
+    </div>
     )
   }
 }

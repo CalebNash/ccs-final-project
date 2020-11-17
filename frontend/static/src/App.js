@@ -1,11 +1,13 @@
 import React from 'react';
 import Cookies from 'js-cookie'
 import Login from './components/Login.js';
+import Register from './components/Register.js';
 import Home from './components/Home.js';
 import GetHelp from './components/GetHelp.js';
 import EmployeePage from './components/EmployeePage.js';
 import CurrentNeeds from './components/CurrentNeeds.js';
 import HowToHelp from './components/HowToHelp.js';
+import Contact from './components/Contact'
 import PasswordReset from './components/PasswordReset';
 import {Route, Switch, Link, withRouter} from 'react-router-dom';
 import './App.css';
@@ -51,7 +53,8 @@ class App extends React.Component{
 
     if(data.detail === "Successfully logged out."){
       Cookies.remove('Authorization');
-      this.props.history.push('/');
+      this.setState({loggedIn: false}, () => this.props.history.push('/'))
+      this.closeMenu()
     }
 
   }
@@ -73,7 +76,7 @@ class App extends React.Component{
 
       if(data.key){
         Cookies.set('Authorization', `Token ${data.key}`)
-        this.props.history.push('/employee');
+        this.setState({loggedIn: true}, () => this.props.history.push('/employee'))
       }
   }
 
@@ -82,12 +85,15 @@ class App extends React.Component{
     let display;
 
     if(this.state.loggedIn){
-      display = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button></React.Fragment>
-      displayPhone = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><br/><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button></React.Fragment>
+      display = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button><Register/></React.Fragment>
+      displayPhone = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><br/><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button><Register closeMenu={this.closeMenu}/></React.Fragment>
     }
 
+
+
     return (
-      <React.Fragment>
+      <div id='page-container'>
+      <div id="content-wrap">
       <div className='banner'><img className='logo' src={logo} alt=""/></div>
       <nav className="navbar navbar-expand-lg site-navbar nav-phone">
       <Menu right noOverlay isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
@@ -122,8 +128,10 @@ class App extends React.Component{
           <Route path='/employee' component={EmployeePage}/>
           <Route path='/current-needs' component={CurrentNeeds}/>
           <Route path='/how-you-can-help' component={HowToHelp}/>
+          <Route path='/contact' component={Contact}/>
           <Route path='/reset/:uid/:token' component={PasswordReset}/>
         </Switch>
+        </div>
         <footer>
           <div className='footer-body'>
             <span>
@@ -134,7 +142,7 @@ class App extends React.Component{
               <a href="https://www.facebook.com/desiardstreetshelter/"><i class="fab fa-facebook"></i></a>
           </div>
         </footer>
-      </React.Fragment>
+      </div>
     )
   }
 }
