@@ -33,7 +33,7 @@ class Home extends React.Component{
     //   </div>
     return(
           <React.Fragment>
-          <h1 className='row mission-title'>OUR MISSION</h1>
+          <h1 className='mission-title'>OUR MISSION</h1>
             <div className='container mission-container'>
               <div className='mission-body1 row'>
                 <section className=' col-12 col-md-6 mission-statement'>

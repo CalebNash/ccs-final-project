@@ -23,25 +23,93 @@
 
 
 .site-navbar{
-  margin-top: 15px;
-  margin-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .nav-phone{
   display: none;
 }
+@media (min-width: 769px) {
+  footer{
+    background-color: black;
+    padding: 30px;
 
-.image-test{
-  /* height: 400px; */
-  width: 200px;
+  }
+
+  .footer-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name{
+    color: white;
+    font-size: 24px;
+  }
+
+  .footer-hours{
+    color: white;
+    font-size: 18px;
+  }
+
+  .fa-facebook{
+    font-size: 32px;
+  }
+
+  .login-button{
+    font-size: 18px;
+    color: gray;
+  }
 }
 
-/* #employee-pages{
-  justify-content:center;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-bottom: 30px;
-} */
+@media (max-width: 768px) {
+  footer{
+    background-color: black;
+    padding: 20px;
+
+  }
+
+  .footer-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name{
+    color: white;
+    font-size: 16px;
+  }
+
+  .footer-hours{
+    color: white;
+    font-size: 12px;
+  }
+
+  .fa-facebook{
+    font-size: 16px;
+  }
+
+  .login-button{
+    font-size: 14px;
+    color: gray;
+  }
+}
+
+@media (max-width: 439px) {
+  .footer-hours{
+    display: none;
+  }
+}
+
+#employee-pages{
+  margin-bottom: 75px;
+  margin-top: 30px;
+}
+
+.employee-nav{
+  padding-left: 50px;
+}
 
 .locations-list-row{
   justify-content: center;
@@ -101,6 +169,14 @@
     height:100px;
     width: 250px;
     margin-top: 50px;
+  }
+
+  .site-navbar{
+    justify-content: flex-end;
+  }
+
+  .phone-donate{
+    align-self: center;
   }
 
   .nav-phone{
@@ -439,6 +515,7 @@ margin-bottom: 50px;
   width: 30px;
   height: 25px;
   right: 15px;
+  top: 6px;
   float: right;
 }
 

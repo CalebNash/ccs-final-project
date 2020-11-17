@@ -37,7 +37,7 @@ class EmployeePage extends React.Component{
     return(
       <div className=''>
         <div id="employee-pages" className="row employee-page-row">
-          <section className='col-4 col-lg-2'>
+          <section className='col-4 col-lg-2 employee-nav'>
             <h5>Home Page</h5>
             <div><button className=" btn" onClick={() => this.handleClick('Events')}>Events</button></div>
             <div><button className=" btn" onClick={() => this.handleClick('Image Carousel')}>Image Carousel</button></div>

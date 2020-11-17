@@ -1,11 +1,11 @@
 import React from 'react';
 import Cookies from 'js-cookie'
-import Register from './components/Register';
 import Login from './components/Login.js';
 import Home from './components/Home.js';
 import GetHelp from './components/GetHelp.js';
 import EmployeePage from './components/EmployeePage.js';
 import CurrentNeeds from './components/CurrentNeeds.js';
+import HowToHelp from './components/HowToHelp.js';
 import PasswordReset from './components/PasswordReset';
 import {Route, Switch, Link, withRouter} from 'react-router-dom';
 import './App.css';
@@ -23,6 +23,7 @@ class App extends React.Component{
     this.handleLogin = this.handleLogin.bind(this);
     this.handleStateChange = this.handleStateChange.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
+
   }
 
 
@@ -77,48 +78,63 @@ class App extends React.Component{
   }
 
   render(){
+    let displayPhone;
+    let display;
+
+    if(this.state.loggedIn){
+      display = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button></React.Fragment>
+      displayPhone = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><br/><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button></React.Fragment>
+    }
 
     return (
       <React.Fragment>
       <div className='banner'><img className='logo' src={logo} alt=""/></div>
       <nav className="navbar navbar-expand-lg site-navbar nav-phone">
-      <Menu isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
+      <Menu right noOverlay isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
         <Link to='/'><button onClick={() => this.closeMenu()} className="btn menu-button"type="button">Home</button></Link>
-        <Link to='/register'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Register</button></Link>
         <Link to='/gethelp'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Get Help</button></Link>
         <Link to='/employee'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Employee</button></Link>
         <Link to='/current-needs'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Current Needs</button></Link>
-        { this.state.loggedIn
-          ?<button className="btn  menu-button"type="button" onClick={this.handleLogout }>Logout</button>
-          :<Login handleLogin = {this.handleLogin}/>
-        }
+        <Link to='/how-you-can-help'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">How You Can Help</button></Link>
+        {displayPhone}
         </Menu>
-        <a className='btn btn-primary' href="https://www.paypal.com/donate?token=NArna_n-Qhcakjj0wSRXNjVY5fYyuF59iITqXmFIhGrtuP-2duHjzEoFNNqtH7j-p4ASNdl3VVZQ-YVf">Donate</a>
-      </nav>
-      <nav className="navbar navbar-expand-lg site-navbar nav-full">
-        <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
-        <Link to='/register'><button className="btn  menu-button"type="button">Register</button></Link>
-        <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
-        <Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link>
-        <Link to='/current-needs'><button className="btn  menu-button"type="button">Current Needs</button></Link>
-        { this.state.loggedIn
-          ?<button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button>
-          :<Login handleLogin = {this.handleLogin}/>
-        }
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <form className='phone-donate' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick"/>
           <input type="hidden" name="hosted_button_id" value="9A6WPPRFGB6K2"/>
-          <button type="submit" className='btn btn-primary' border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">Donate</button>  
+          <button type="submit" className='btn btn-primary' border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">Donate</button>
+        </form>
+
+      </nav>
+      <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light site-navbar nav-full">
+        <Link to='/'><button className="btn menu-button"type="button">Home</button></Link>
+        <Link to='/gethelp'><button className="btn  menu-button"type="button">Get Help</button></Link>
+        <Link to='/current-needs'><button className="btn  menu-button"type="button">Current Needs</button></Link>
+        <Link to='/how-you-can-help'><button className="btn  menu-button"type="button">How You Can Help</button></Link>
+        {display}
+        <form className='donate' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick"/>
+          <input type="hidden" name="hosted_button_id" value="9A6WPPRFGB6K2"/>
+          <button type="submit" className='btn btn-primary' border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">Donate</button>
         </form>
       </nav>
         <Switch>
           <Route path='/' exact component={Home}/>
-          <Route path='/register' component={Register}/>
           <Route path='/gethelp' component={GetHelp}/>
           <Route path='/employee' component={EmployeePage}/>
           <Route path='/current-needs' component={CurrentNeeds}/>
+          <Route path='/how-you-can-help' component={HowToHelp}/>
           <Route path='/reset/:uid/:token' component={PasswordReset}/>
         </Switch>
+        <footer>
+          <div className='footer-body'>
+            <span>
+              <Login handleLogin = {this.handleLogin}/>
+              <span className='footer-name'>The Renewal Center @ 2020</span>
+            </span>
+            <span className='footer-hours'>Mon - Sun 6am - 6pm</span>
+              <a href="https://www.facebook.com/desiardstreetshelter/"><i class="fab fa-facebook"></i></a>
+          </div>
+        </footer>
       </React.Fragment>
     )
   }
