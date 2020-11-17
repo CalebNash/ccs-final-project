@@ -93,7 +93,6 @@ class App extends React.Component{
       <Menu right noOverlay isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
         <Link to='/'><button onClick={() => this.closeMenu()} className="btn menu-button"type="button">Home</button></Link>
         <Link to='/gethelp'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Get Help</button></Link>
-        <Link to='/employee'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Employee</button></Link>
         <Link to='/current-needs'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">Current Needs</button></Link>
         <Link to='/how-you-can-help'><button onClick={() => this.closeMenu()} className="btn  menu-button"type="button">How You Can Help</button></Link>
         {displayPhone}
