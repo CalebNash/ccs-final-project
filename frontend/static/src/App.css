@@ -609,7 +609,13 @@ margin-bottom: 50px;
   margin-left: 15px;
 }
 
+/* ------------------password Reset--------------------- */
 
+.pass-reset-row{
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 .donations-pie-chart img{
   max-width: 100%;

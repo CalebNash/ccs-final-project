@@ -36,8 +36,9 @@ class PasswordReset extends React.Component{
     };
      const handleError = (err) => console.warn(err);
      const response = await fetch(`/api/v1/rest-auth/password/reset/confirm/`, options)
-     const error = await response.json().catch(handleError)
-     await console.log(error);
+     const dataInfo = await response.json().catch(handleError)
+     await console.log(dataInfo);
+
   }
 
 
@@ -49,8 +50,8 @@ class PasswordReset extends React.Component{
     console.log(this.state.uid);
     console.log(this.state.token);
     return(
-      <div>
-      <form onSubmit={(event) => this.handleReset(event, this.state)}>
+      <div className='row pass-reset-row'>
+      <form className='col-12 col-sm-4 pass-reset-form' onSubmit={(event) => this.handleReset(event, this.state)}>
       <div className="form-group">
         <label htmlFor="new_password1">new password</label>
         <input type="text" className="form-control" id="new_password1" name="new_password1" value={this.state.title} onChange={this.handleChange}/>
