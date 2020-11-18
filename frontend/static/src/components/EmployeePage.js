@@ -1,8 +1,8 @@
 import React from 'react';
 import EditEvent from './EditEvent';
 import EditMarkers from './EditMarkers';
-import AddMarkers from './AddMarkers';
-import NeedsForm from './NeedsForm';
+
+
 import EditNeeds from './EditNeeds';
 import EditCarouselImage from './EditCarouselImage';
 //import Cropping from './Cropping'
@@ -30,9 +30,9 @@ class EmployeePage extends React.Component{
     }else if(page === 'Image Carousel'){
       display = <React.Fragment><EditCarouselImage/></React.Fragment>;
     }else if(page === 'Locations'){
-      display = <React.Fragment><EditMarkers/><AddMarkers/></React.Fragment>;
+      display = <React.Fragment><EditMarkers/></React.Fragment>;
     }else if(page === 'Current Needs'){
-      display = <React.Fragment><NeedsForm/><EditNeeds/></React.Fragment>;
+      display = <React.Fragment><EditNeeds/></React.Fragment>;
     }
     return(
       <div className=''>
@@ -45,7 +45,7 @@ class EmployeePage extends React.Component{
             <div><button className=" btn" onClick={() => this.handleClick('Locations')}>Locations</button></div>
             <div><button className=" btn" onClick={() => this.handleClick('Current Needs')}>Current Needs</button></div>
           </section>
-          <section className='col-7 col-lg-10'>
+          <section className='col-7 col-lg-9 employee-display'>
             {display}
           </section>
         </div>

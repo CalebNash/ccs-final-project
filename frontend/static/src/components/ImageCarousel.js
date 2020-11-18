@@ -20,7 +20,6 @@ class ImageCarousel extends React.Component{
 
 
   render(){
-    console.log(this.state.newEvents);
     const images = this.state.images.map(image => <Carousel.Item key={image.id}><img className="d-block w-100" src={image.image} alt="First slide"/></Carousel.Item> );
     return(
       <div>

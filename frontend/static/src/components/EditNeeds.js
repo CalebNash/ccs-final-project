@@ -1,6 +1,6 @@
 import React from 'react'
 import Cookies from 'js-cookie';
-
+import NeedsForm from './NeedsForm';
 
 class EditNeeds extends React.Component{
   constructor(props){
@@ -11,6 +11,12 @@ class EditNeeds extends React.Component{
     }
     this.deleteNeed = this.deleteNeed.bind(this);
     this.removeNeed = this.removeNeed.bind(this);
+    this.addNeed = this.addNeed.bind(this);
+  }
+
+  addNeed(need){
+    const needs = [...this.state.needs, need];
+    this.setState({needs});
   }
 
   async componentDidMount(){
@@ -58,6 +64,7 @@ async removeNeed(id){
    .map(need => <li key={need.id}>{need.item} <i onClick={() => this.deleteNeed(need.id)} className="fas fa-times"></i></li>)
     return(
       <div>
+      <NeedsForm addNeed={this.addNeed}/>
         <div className='row needs-row'>
           <div className='card col-12 '>
             <h5>Miscellaneous</h5>

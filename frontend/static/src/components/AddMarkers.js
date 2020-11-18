@@ -112,7 +112,7 @@ async handleSelect (address) {
   render(){
     return(
       <React.Fragment>
-      <button onClick={() => this.setState({ show: true})}>add location</button>
+      <button className='btn btn-primary' onClick={() => this.setState({ show: true})}>add location</button>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
       <Modal.Header closeButton>Add a Location</Modal.Header>
       <Modal.Body>

@@ -136,10 +136,10 @@ class App extends React.Component{
           <div className='footer-body'>
             <span>
               <Login handleLogin = {this.handleLogin}/>
-              <span className='footer-name'>The Renewal Center @ 2020</span>
+              <span className='footer-name'>The Renewal Center</span>
             </span>
             <span className='footer-hours'>Mon - Sun 6am - 6pm</span>
-              <a href="https://www.facebook.com/desiardstreetshelter/"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.facebook.com/desiardstreetshelter/"><i className="fab fa-facebook"></i></a>
           </div>
         </footer>
       </div>

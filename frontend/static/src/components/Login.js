@@ -27,7 +27,7 @@ class Login extends React.Component{
   render(){
     return(
       <React.Fragment>
-        <button className="btn login-button"type="button" onClick={() => this.setState({show: true})}><i class="far fa-user"></i></button>
+        <button className="btn login-button"type="button" onClick={() => this.setState({show: true})}><i className="far fa-user"></i></button>
         <Modal dialogClassName='login-modal' show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>Login</Modal.Header>
         <Modal.Body>

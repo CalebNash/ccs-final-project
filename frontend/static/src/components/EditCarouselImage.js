@@ -41,16 +41,16 @@ class EditEvent extends React.Component {
     const response = await fetch('api/v1/image_carousel/');
     const data = await response.json();
     this.setState({images:data});
-    console.log(data);
   }
 
   handleClose(){
     this.setState({show: false});
   }
 
-  chooseImage(display) {
+  async chooseImage(display) {
     const imageId = this.state.images.findIndex(image => image.id === display)
-    this.setState({pickedImage: this.state.images[imageId]})
+    await this.setState({pickedImage: this.state.images[imageId]})
+    this.setState({preview: this.state.pickedImage.image})
     this.setState({show: true});
 
 }
@@ -90,7 +90,9 @@ class EditEvent extends React.Component {
        const responce = await fetch(`/api/v1/image_carousel/${this.state.pickedImage.id}/`, options);
        const data = await responce.json().catch(handleError);
        console.log('data key: ', data.key);
-         this.setState({show: false});
+       this.setState({show: false});
+       const images = [...this.state.images, data];
+       this.setState({images});
 
      }
 
@@ -123,7 +125,7 @@ class EditEvent extends React.Component {
         {images}
       </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>Add Image</Modal.Header>
+        <Modal.Header closeButton>Change Image</Modal.Header>
         <Modal.Body>
           <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
             <div className="form-group">

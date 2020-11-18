@@ -53,6 +53,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .footer-name{
@@ -98,6 +101,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .footer-name{
@@ -111,7 +117,7 @@
   }
 
   .fa-facebook{
-    font-size: 16px;
+    font-size: 22px;
   }
 
   .login-button{
@@ -127,12 +133,18 @@
 }
 
 #employee-pages{
-  margin-bottom: 75px;
   margin-top: 30px;
 }
 
 .employee-nav{
   padding-left: 50px;
+  background-color: #F5F5F5;
+  padding-top: 20px;
+  padding-bottom: 75px;
+}
+
+.employee-display{
+  margin-top: 40px;
 }
 
 .locations-list-row{
@@ -141,8 +153,16 @@
 
 #locations-list{
   background-color: #F5F5F5;
+
+}
+#locations-list-items{
   flex-direction:row;
   flex-wrap: wrap;
+}
+
+#add-location-btn{
+  text-align: right;
+  margin-top: 10px;
 }
 
 .location-title{
@@ -160,6 +180,7 @@
 
 .location-form-modal .modal-content {
 }
+
 
 .login-modal{
   width: 30vw;
@@ -251,6 +272,7 @@
 
 .needs-row{
   justify-content: center;
+  margin-top: 40px;
 }
 
 .event-preview{
@@ -350,6 +372,7 @@
   font-size: 44px;
   color: #fff;
   background-color: #61478F;
+  margin-bottom: 30px;
 }
 
 .mission-statement-head{
@@ -497,6 +520,7 @@ margin-bottom: 50px;
   font-family: 'Cormorant Garamond';
   margin-left: 15px;
   margin-right: 15px;
+  margin-bottom: 50px;
 
 }
 
@@ -530,7 +554,7 @@ margin-bottom: 50px;
 /* Get Help */
 
 @media (min-width: 769px) {
-  #formcheck{
+  #location-filters{
     display: block;
 
 }
@@ -555,6 +579,46 @@ margin-bottom: 50px;
   color: #666666;
   padding-left: 20px;
   margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* -------------------How To Help--------------------- */
+
+.how-to-help{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.how-i-can-help{
+  margin-bottom: 50px;
+}
+
+.how-i-can-help-para{
+  font-size: 20px;
+  color: #666666;
+  padding: 20px;
+  margin-left: 15px;
+}
+
+.how-i-can-help-para span{
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.other-ways-to-help-para{
+  font-size: 20px;
+  color: #666666;
+  padding: 20px;
+  margin-left: 15px;
+}
+
+.other-ways-to-help-para span{
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.donations-pie-chart img{
+  max-width: 100%;
 }
 
 

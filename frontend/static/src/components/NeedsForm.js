@@ -25,7 +25,7 @@ class NeedsForm extends React.Component{
     this.setState({[event.target.name]: event.target.value})
   }
 
-  async handleSubmit(event, data){
+  async handleSubmit(event, need){
     event.preventDefault();
     const options = {
       method:'POST',
@@ -33,12 +33,13 @@ class NeedsForm extends React.Component{
         'X-CSRFToken': Cookies.get('csrftoken'),
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(need),
     };
      const handleError = (err) => console.warn(err);
      const response = await fetch(`api/v1/needs/`, options)
-     const error = await response.json().catch(handleError)
-     await console.log(error);
+     const data = await response.json().catch(handleError)
+     this.props.addNeed(data)
+     this.setState({item: '', category: 'miscellaneous', needs: [],})
   }
 
   render(){

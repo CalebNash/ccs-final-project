@@ -68,7 +68,7 @@ class AddCarouselImage extends React.Component {
         <i className="fas fa-plus event-plus-icon"></i>
       </button>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>Add Event</Modal.Header>
+        <Modal.Header closeButton>Add Image</Modal.Header>
         <Modal.Body>
         <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
           <div className="form-group">

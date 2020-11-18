@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-
+import AddMarkers from './AddMarkers';
 
 
 class EditMarkers extends React.Component{
@@ -137,8 +137,13 @@ async handleSelect (address) {
     return(
       <React.Fragment>
       <div className='row locations-list-row'>
-        <div id='locations-list' className='col-12 card'>
+        <div id='locations-list' className='col-8 card'>
+          <div id='locations-list-items'>
             {locations}
+          </div>
+          <span id='add-location-btn'>
+            <AddMarkers/>
+          </span>
         </div>
       </div>
     <Modal dialogClassName='location-form-modal' show={this.state.isEditing} onHide={this.handleClose}>

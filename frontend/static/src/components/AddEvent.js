@@ -62,6 +62,7 @@ class AddEvent extends React.Component {
        const responce = await fetch('/api/v1/events/', options);
        const data = await responce.json().catch(handleError);
        console.log(data);
+       this.props.addEvent(data)
        if(data.key){
          Cookies.set('Authorization', `Token ${data.key}`)
        }
@@ -88,7 +89,7 @@ class AddEvent extends React.Component {
               <input type="text" className="form-control" id="title" name="title" value={this.state.title} onChange={this.handleChange}/>
               <label htmlFor="body">Body</label>
               <textarea rows='5' type="text" className="form-control" id="body" name="body" value={this.state.body} onChange={this.handleChange}/>
-            <button type="submit" className="btn btn-primary mt-2">Add Event</button>
+            <button type="submit" className="btn btn-primary mt-2" onClick={() => this.setState({show: false})}>Add Event</button>
           </form>
         </Modal.Body>
       </Modal>

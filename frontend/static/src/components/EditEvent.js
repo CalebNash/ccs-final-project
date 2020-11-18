@@ -39,22 +39,28 @@ class EditEvent extends React.Component {
     this.chooseEvent = this.chooseEvent.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.addEvent = this.addEvent.bind(this);
+  }
+
+  addEvent(event){
+    const events = [...this.state.events, event];
+    this.setState({events});
   }
 
   async componentDidMount(){
     const response = await fetch('api/v1/events/');
     const data = await response.json();
     this.setState({events:data});
-    console.log(data);
   }
 
   handleClose(){
     this.setState({show: false});
   }
 
-  chooseEvent(display) {
+  async chooseEvent(display) {
     const eventId = this.state.events.findIndex(event => event.id === display)
-    this.setState({pickedEvent: this.state.events[eventId]})
+    await this.setState({pickedEvent: this.state.events[eventId]})
+    this.setState({preview: this.state.pickedEvent.image})
     this.setState({show: true});
 
 }
@@ -85,6 +91,7 @@ class EditEvent extends React.Component {
     async addImage(e){
        e.preventDefault();
        this.handleClose();
+       console.log(this.state.pickedEvent.image);
        let formData = new FormData();
        formData.append('image', this.state.pickedEvent.image)
        formData.append('title', this.state.pickedEvent.title)
@@ -103,6 +110,8 @@ class EditEvent extends React.Component {
        const data = await responce.json().catch(handleError);
        console.log('data key: ', data.key);
          this.setState({show: false});
+         const events = [...this.state.events, data];
+         this.setState({events});
 
      }
 
@@ -119,7 +128,10 @@ class EditEvent extends React.Component {
         const responce = await fetch(`/api/v1/events/${this.state.pickedEvent.id}/`, options);
         const data = await responce.json().catch(handleError);
         console.log(data);
-
+          const events = this.state.events;
+          const eventId = this.state.events.findIndex(event => event.id === this.state.pickedEvent.id)
+          events.splice(eventId, 1);
+          this.setState({events})
           this.setState({show: false});
 
       }
@@ -131,11 +143,11 @@ class EditEvent extends React.Component {
     return (
       <React.Fragment>
       <div className='row event-edit-row'>
-        <AddEvent/>
+        <AddEvent addEvent={this.addEvent}/>
         {events}
       </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>Add Event</Modal.Header>
+        <Modal.Header closeButton>Edit Event</Modal.Header>
         <Modal.Body>
           <form className="col-12 col-md-6 mb-5 form" onSubmit={(e) => this.addImage(e)}>
             <div className="form-group">
@@ -147,8 +159,8 @@ class EditEvent extends React.Component {
               <input type="text" className="form-control" id="title" name="title" value={this.state.pickedEvent.title} onChange={this.handleChange}/>
               <label htmlFor="body">Body</label>
               <textarea rows='5' type="text" className="form-control" id="body" name="body" value={this.state.pickedEvent.body} onChange={this.handleChange}/>
-            <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Add Event</button>
-            <button type="button" className="btn btn-primary mt-2" onClick={(e) => this.deleteEvent(e)}>Delete</button>
+            <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Save Event</button>
+            <button type="button" className="btn btn-primary mt-2" onClick={(e) =>{ this.handleClose(); this.deleteEvent(e)}}>Delete</button>
           </form>
         </Modal.Body>
       </Modal>

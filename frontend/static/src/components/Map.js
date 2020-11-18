@@ -107,8 +107,6 @@ class Map extends React.Component {
 
 
   render() {
-    // console.log(this.state.maps);
-    console.log('markers', this.state.markers);
    return (
      <div className='row locations-list-row'>
 
@@ -117,7 +115,7 @@ class Map extends React.Component {
           <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY}}
           defaultCenter={{ lat: 32.5059041, lng: -92.11102670000001 }}
-          defaultZoom={12}
+          defaultZoom={13}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => this.addToState(map, maps)}
           >
@@ -125,7 +123,7 @@ class Map extends React.Component {
          </div>
        </div>
        <div id='locations-list' className='col-12 col-md-3 card'>
-       <form className="col-12 mb-5 form location-form" onSubmit={(event)=> this.filterMarkers(event)}>
+       <form className="col-12 mb-3 form location-form" onSubmit={(event)=> this.filterMarkers(event)}>
          <div className="form-group">
            <div id='location-filters' className="form-check form-check-inline locations  location-filters">
              <input className="form-check-input" type="checkbox" id="overnight" value="overnight" onChange={this.handleChecked} />
