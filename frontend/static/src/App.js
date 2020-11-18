@@ -129,7 +129,7 @@ class App extends React.Component{
           <Route path='/current-needs' component={CurrentNeeds}/>
           <Route path='/how-you-can-help' component={HowToHelp}/>
           <Route path='/contact' component={Contact}/>
-          <Route path='/reset/:uid/:token' component={PasswordReset}/>
+          <Route path='/password/reset/confirm/:uid/:token' component={PasswordReset}/>
         </Switch>
         </div>
         <footer>
