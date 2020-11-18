@@ -55,7 +55,7 @@ class Register extends React.Component{
   render(){
     return(
       <div>
-        <button className="btn"type="button" onClick={() =>{ this.props.closeMenu(); this.setState({show: true})}}>Register</button>
+        <button className="btn"type="button" onClick={() => this.setState({show: true})}>Register</button>
         <Modal dialogClassName='login-modal' show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>Login</Modal.Header>
           <Modal.Body>

@@ -85,7 +85,7 @@ class App extends React.Component{
     let display;
 
     if(this.state.loggedIn){
-      display = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button><Register/></React.Fragment>
+      display = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button><Register closeMenu={this.closeMenu}/></React.Fragment>
       displayPhone = <React.Fragment><Link to='/employee'><button className="btn  menu-button"type="button">Employee</button></Link><br/><button className="btn  menu-button"type="button" onClick={this.handleLogout}>Logout</button><Register closeMenu={this.closeMenu}/></React.Fragment>
     }
 

@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.22527178.chunk.css",
-    "main.js": "/static/js/main.7991e1c9.chunk.js",
-    "main.js.map": "/static/js/main.7991e1c9.chunk.js.map",
+    "main.css": "/static/css/main.bf0e6fdd.chunk.css",
+    "main.js": "/static/js/main.157e2bc2.chunk.js",
+    "main.js.map": "/static/js/main.157e2bc2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.bfb32c45.js",
     "runtime-main.js.map": "/static/js/runtime-main.bfb32c45.js.map",
     "static/css/2.95f25948.chunk.css": "/static/css/2.95f25948.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.6db3bd8c.chunk.js.map": "/static/js/3.6db3bd8c.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.95f25948.chunk.css.map": "/static/css/2.95f25948.chunk.css.map",
-    "static/css/main.22527178.chunk.css.map": "/static/css/main.22527178.chunk.css.map",
+    "static/css/main.bf0e6fdd.chunk.css.map": "/static/css/main.bf0e6fdd.chunk.css.map",
     "static/js/2.b2d27fdd.chunk.js.LICENSE.txt": "/static/js/2.b2d27fdd.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/banner-image.09deb336.jpeg",
     "static/media/donation-pie-chart.c959ae4d.png": "/static/media/donation-pie-chart.c959ae4d.png",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.bfb32c45.js",
     "static/css/2.95f25948.chunk.css",
     "static/js/2.b2d27fdd.chunk.js",
-    "static/css/main.22527178.chunk.css",
-    "static/js/main.7991e1c9.chunk.js"
+    "static/css/main.bf0e6fdd.chunk.css",
+    "static/js/main.157e2bc2.chunk.js"
   ]
 }
