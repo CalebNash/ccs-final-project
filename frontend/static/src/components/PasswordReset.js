@@ -38,6 +38,11 @@ class PasswordReset extends React.Component{
      const response = await fetch(`/api/v1/rest-auth/password/reset/confirm/`, options)
      const dataInfo = await response.json().catch(handleError)
      await console.log(dataInfo);
+     this.setState({})
+     if(dataInfo){
+       alert("Your password has been reset!");
+       this.props.history.push('/')
+     }
 
   }
 

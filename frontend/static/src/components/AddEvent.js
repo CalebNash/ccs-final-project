@@ -63,19 +63,16 @@ class AddEvent extends React.Component {
        const data = await responce.json().catch(handleError);
        console.log(data);
        this.props.addEvent(data)
-       if(data.key){
-         Cookies.set('Authorization', `Token ${data.key}`)
-       }
+    }
 
-     }
-
+    
   render() {
 
     return (
       <React.Fragment>
-      <button className=' col-lg-3 col-12 card  add-event' onClick={() => this.setState({show: true})}>
-        <i className="fas fa-plus event-plus-icon"></i>
-      </button>
+      <div className='col-12 add-event-background'>
+        <button id='add-event-btn' className='btn' onClick={() => this.setState({show: true})}>Add Event</button>
+      </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>Add Event</Modal.Header>
         <Modal.Body>

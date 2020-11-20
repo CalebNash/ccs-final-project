@@ -41,6 +41,9 @@ class Login extends React.Component{
      const response = await fetch(`api/v1/rest-auth/password/reset/`, options)
      const data = await response.json().catch(handleError)
      console.log(data);
+     if(data){
+       alert("Check your email for a link to reset your password");
+     }
   }
 
 

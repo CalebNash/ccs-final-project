@@ -25,6 +25,7 @@ class EditMarkers extends React.Component{
     this.handleClose = this.handleClose.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.addLocation = this.addLocation.bind(this);
   }
 
   handleClose(){
@@ -36,6 +37,11 @@ class EditMarkers extends React.Component{
     const response = await fetch('api/v1/locations/');
     const data = await response.json();
     this.setState({locations:data});
+  }
+
+  addLocation(location){
+    const locations = [...this.state.locations, location];
+    this.setState({locations});
   }
 
   handleAddress (address) {
@@ -115,8 +121,7 @@ async handleSelect (address) {
         await this.setState({pickedLocation: []});
     }
 
-  async deleteLocation(event, id){
-        event.preventDefault();
+  async deleteLocation(id){
         const options = {
           method: 'DELETE',
           headers: {
@@ -129,6 +134,11 @@ async handleSelect (address) {
         const data = await response.json().catch(handleError)
         await console.log(data);
         await this.setState({pickedLocation: []});
+        const locationId = this.state.locations.findIndex(location => location.id === id)
+        await this.setState({pickedLocation: this.state.locations[locationId]})
+        const locations = this.state.locations;
+        locations.splice(locationId,1);
+        this.setState({locations})
     }
 
 
@@ -136,16 +146,18 @@ async handleSelect (address) {
     const locations = this.state.locations.map(location => <button key={location.id} className=' btn location-title' onClick={() => this.setState({pickedLocation: location, isEditing: true})}>{location.name}</button>)
     return(
       <React.Fragment>
-      <div className='row locations-list-row'>
-        <div id='locations-list' className='col-8 card'>
-          <div id='locations-list-items'>
-            {locations}
+
+          <div className='row event-edit-row'>
+            <div className='col-10 event-edit-col'>
+              <div className='row'>
+                <AddMarkers addLocation={this.addLocation}/>
+                <div className=''>
+                  {locations}
+                </div>
+              </div>
+            </div>
           </div>
-          <span id='add-location-btn'>
-            <AddMarkers/>
-          </span>
-        </div>
-      </div>
+
     <Modal dialogClassName='location-form-modal' show={this.state.isEditing} onHide={this.handleClose}>
     <Modal.Header closeButton>Edit a Location</Modal.Header>
     <Modal.Body>
@@ -259,7 +271,8 @@ async handleSelect (address) {
             <label className="form-check-label" htmlFor="clothing">clothing</label>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary" onClick={() => this.setState({isEditing: false})}>Save</button>
+        <button type="submit" className="btn btn-primary modal-btn-1" onClick={() => this.setState({isEditing: false})}>Save</button>
+        <button type="button" className="btn btn-primary" onClick={() => { this.deleteLocation(this.state.pickedLocation.id); this.setState({isEditing: false})}}>Delete</button>
       </form>
     </Modal.Body>
   </Modal>

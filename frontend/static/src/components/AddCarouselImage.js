@@ -54,19 +54,16 @@ class AddCarouselImage extends React.Component {
        const responce = await fetch('/api/v1/image_carousel/', options);
        const data = await responce.json().catch(handleError);
        console.log(data);
-       if(data.key){
-         Cookies.set('Authorization', `Token ${data.key}`)
-       }
-
-     }
+       this.props.retrieveImage(data)
+    }
 
   render() {
 
     return (
       <React.Fragment>
-      <button className=' col-lg-3 col-12  add-event' onClick={() => this.setState({show: true})}>
-        <i className="fas fa-plus event-plus-icon"></i>
-      </button>
+      <div className='col-12 add-event-background'>
+        <button id='add-event-btn' className='btn' onClick={() => this.setState({show: true})}>Add Image</button>
+      </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>Add Image</Modal.Header>
         <Modal.Body>
@@ -76,7 +73,7 @@ class AddCarouselImage extends React.Component {
             <input type='file' id="image" name="image" onChange={this.handleImage}/>
             <img className='image-preview' src={this.state.preview} alt=''/>
           </div>
-          <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Add Image</button>
+          <button type="submit" className="btn btn-primary mt-2" onClick={this.handleClose}>Add Image</button>
         </form>
         </Modal.Body>
       </Modal>

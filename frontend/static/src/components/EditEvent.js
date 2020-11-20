@@ -9,7 +9,7 @@ import AddEvent from './AddEvent'
 function EventItem(props){
   return(
 
-      <div className='list-group col-lg-3 col-12' onClick={() => props.chooseEvent(props.event.id)}>
+      <div className='event-preview-list col-lg-6 col-12' onClick={() => props.chooseEvent(props.event.id)}>
         <div className='list-group-item event-preview'>
         <img src={props.event.image} alt=""/>
         </div>
@@ -110,6 +110,10 @@ class EditEvent extends React.Component {
        const data = await responce.json().catch(handleError);
        console.log('data key: ', data.key);
          this.setState({show: false});
+         const eventsTemp = this.state.events;
+         const eventId = this.state.events.findIndex(event => event.id === this.state.pickedEvent.id)
+         eventsTemp.splice(eventId, 1);
+         this.setState({events: eventsTemp})
          const events = [...this.state.events, data];
          this.setState({events});
 
@@ -143,8 +147,12 @@ class EditEvent extends React.Component {
     return (
       <React.Fragment>
       <div className='row event-edit-row'>
-        <AddEvent addEvent={this.addEvent}/>
-        {events}
+        <div className='col-10 event-edit-col'>
+          <div className='row'>
+            <AddEvent addEvent={this.addEvent}/>
+            {events}
+          </div>
+        </div>
       </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>Edit Event</Modal.Header>
@@ -159,7 +167,7 @@ class EditEvent extends React.Component {
               <input type="text" className="form-control" id="title" name="title" value={this.state.pickedEvent.title} onChange={this.handleChange}/>
               <label htmlFor="body">Body</label>
               <textarea rows='5' type="text" className="form-control" id="body" name="body" value={this.state.pickedEvent.body} onChange={this.handleChange}/>
-            <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Save Event</button>
+            <button type="submit" className="btn btn-primary mt-2 modal-btn-1" onClick={(e) => this.handleClose}>Save Event</button>
             <button type="button" className="btn btn-primary mt-2" onClick={(e) =>{ this.handleClose(); this.deleteEvent(e)}}>Delete</button>
           </form>
         </Modal.Body>

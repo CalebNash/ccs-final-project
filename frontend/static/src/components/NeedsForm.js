@@ -45,7 +45,7 @@ class NeedsForm extends React.Component{
   render(){
 
     return(
-      <form className="col-12" onSubmit={(event) => this.handleSubmit(event, this.state)}>
+      <form className="col-6 needs-form" onSubmit={(event) => this.handleSubmit(event, this.state)}>
         <div className="form-group">
           <label htmlFor="item">Item</label>
           <input type="text" className="form-control" id="item" name="item" value={this.state.item} onChange={this.handleChange}/>
@@ -58,7 +58,7 @@ class NeedsForm extends React.Component{
           </select>
 
         </div>
-        <button type="submit" className="btn btn-primary">Save</button>
+        <button type="submit" className="btn btn-primary">Add Need</button>
       </form>
     )
   }

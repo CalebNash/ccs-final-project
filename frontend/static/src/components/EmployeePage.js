@@ -35,17 +35,17 @@ class EmployeePage extends React.Component{
       display = <React.Fragment><EditNeeds/></React.Fragment>;
     }
     return(
-      <div className=''>
+      <div className='employee-page'>
         <div id="employee-pages" className="row employee-page-row">
-          <section className='col-4 col-lg-2 employee-nav'>
-            <h5>Home Page</h5>
+          <section className='col-4 col-lg-3 employee-nav'>
+            <h3>Home Page</h3>
             <div><button className=" btn" onClick={() => this.handleClick('Events')}>Events</button></div>
             <div><button className=" btn" onClick={() => this.handleClick('Image Carousel')}>Image Carousel</button></div>
-            <h5>Resources</h5>
+            <h3>Resources</h3>
             <div><button className=" btn" onClick={() => this.handleClick('Locations')}>Locations</button></div>
             <div><button className=" btn" onClick={() => this.handleClick('Current Needs')}>Current Needs</button></div>
           </section>
-          <section className='col-7 col-lg-9 employee-display'>
+          <section className='col-8 col-lg-9 employee-display'>
             {display}
           </section>
         </div>

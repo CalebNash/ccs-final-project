@@ -40,26 +40,26 @@ class CurrentNeeds extends React.Component{
           <p className='current-needs-page-para'>Donations can be dropped off at the Renewal Center Monday through Friday 8:00am-5:00pm or schedule a time to drop off items by calling 318-737-7539. Or you can order them from our <a href="https://www.amazon.com/hz/wishlist/ls/2ZYWVLSPBAUJ9?ref_=wl_share">Amazon wish list</a> and have it automatically sent to us.</p>
 
           <div className='row needs-row'>
-            <div className='card col-12 col-md-8'>
-              <h5>Miscellaneous</h5>
-              <ul>
+            <div className='needs-items col-12 col-md-6'>
+              <h4>Miscellaneous</h4>
+              <ul className='needs-list'>
               {miscellaneous}
               </ul>
             </div>
-            <div className='card col-12 col-md-8'>
-              <h5>Paper Products</h5>
+            <div className='needs-items  col-12 col-md-6'>
+              <h4>Paper Products</h4>
               <ul>
               {paperProducts}
               </ul>
             </div>
-            <div className='card col-12 col-md-8'>
-              <h5>Hygiene Products</h5>
+            <div className='needs-items  col-12 col-md-6'>
+              <h4>Hygiene Products</h4>
               <ul>
               {hygieneProducts}
               </ul>
             </div>
-            <div className='card col-12 col-md-8'>
-              <h5>Cleaning Items</h5>
+            <div className='needs-items  col-12 col-md-6'>
+              <h4>Cleaning Items</h4>
               <ul>
               {cleaningItems}
               </ul>

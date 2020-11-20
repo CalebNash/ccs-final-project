@@ -63,7 +63,8 @@ async removeNeed(id){
    .filter(need => need.category === 'cleaning items')
    .map(need => <li key={need.id}>{need.item} <i onClick={() => this.deleteNeed(need.id)} className="fas fa-times"></i></li>)
     return(
-      <div>
+      <div className='row event-edit-row'>
+        <div className='col-10 event-edit-col'>
       <NeedsForm addNeed={this.addNeed}/>
         <div className='row needs-row'>
           <div className='card col-12 '>
@@ -91,6 +92,7 @@ async removeNeed(id){
             </ul>
           </div>
         </div>
+      </div>
       </div>
     )
   }

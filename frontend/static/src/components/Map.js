@@ -110,55 +110,55 @@ class Map extends React.Component {
    return (
      <div className='row locations-list-row'>
 
-       <div className='col-12 col-md-9'>
+       <div className='col-12 col-md-8 col-lg-9'>
          <div style={{ height: '400px', width: '100%' }}>
           <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY}}
           defaultCenter={{ lat: 32.5059041, lng: -92.11102670000001 }}
-          defaultZoom={13}
+          defaultZoom={12}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => this.addToState(map, maps)}
           >
           </GoogleMapReact>
          </div>
        </div>
-       <div id='locations-list' className='col-12 col-md-3 card'>
+       <div id='locations-list' className='col-12 col-md-4 col-lg-3 card'>
        <form className="col-12 mb-3 form location-form" onSubmit={(event)=> this.filterMarkers(event)}>
          <div className="form-group">
            <div id='location-filters' className="form-check form-check-inline locations  location-filters">
              <input className="form-check-input" type="checkbox" id="overnight" value="overnight" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="overnight">overnight</label>
+             <label className="form-check-label" htmlFor="overnight">Overnight</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="food" value="food" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="food">food</label>
+             <label className="form-check-label" htmlFor="food">Food</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="mental health" value="mental health" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="mental health">mental health</label>
+             <label className="form-check-label" htmlFor="mental health">Mental Health</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="medicine" value="medicine" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="medicine">medicine</label>
+             <label className="form-check-label" htmlFor="medicine">Medicine</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="financial assistance" value="financial assistance" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="financial assistance">financial assistance</label>
+             <label className="form-check-label" htmlFor="financial assistance">Financial Assistance</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="long term housing" value="long term housing" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="long term housing">long term housing</label>
+             <label className="form-check-label" htmlFor="long term housing">Long Term Housing</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="vocational training" value="vocational training" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="vocational training">vocational training</label>
+             <label className="form-check-label" htmlFor="vocational training">Vocational Training</label>
            </div>
            <div id='location-filters' className="form-check form-check-inline location-filters">
              <input className="form-check-input" type="checkbox" id="clothing" value="clothing" onChange={this.handleChecked} />
-             <label className="form-check-label" htmlFor="clothing">clothing</label>
+             <label className="form-check-label" htmlFor="clothing">Clothing</label>
            </div>
          </div>
-         <button type="submit" className="btn btn-primary">Save</button>
+         <button type="submit" className="btn btn-primary">Update</button>
        </form>
        </div>
      </div>

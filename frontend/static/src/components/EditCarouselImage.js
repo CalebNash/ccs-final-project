@@ -9,7 +9,7 @@ import AddCarouselImage from './AddCarouselImage'
 function ImageItem(props){
   return(
 
-      <div className='list-group col-lg-3 col-12' onClick={() => props.chooseImage(props.image.id)}>
+      <div className='event-preview-list col-lg-6 col-12' onClick={() => props.chooseImage(props.image.id)}>
         <div className='list-group-item event-preview'>
         <img src={props.image.image} alt=""/>
         </div>
@@ -35,6 +35,12 @@ class EditEvent extends React.Component {
     this.chooseImage = this.chooseImage.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.retrieveImage = this.retrieveImage.bind(this);
+  }
+
+  retrieveImage(image){
+    const images = [...this.state.images, image];
+    this.setState({images});
   }
 
   async componentDidMount(){
@@ -121,8 +127,12 @@ class EditEvent extends React.Component {
     return (
       <React.Fragment>
       <div className='row event-edit-row'>
-        <AddCarouselImage/>
-        {images}
+        <div className='col-10 event-edit-col'>
+          <div className='row'>
+            <AddCarouselImage retrieveImage={this.retrieveImage}/>
+            {images}
+          </div>
+        </div>
       </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>Change Image</Modal.Header>
@@ -133,7 +143,7 @@ class EditEvent extends React.Component {
               <input type='file' id="image" name="image" onChange={this.handleImage}/>
               <img className='image-preview' src={this.state.preview} alt=''/>
             </div>
-            <button type="submit" className="btn btn-primary mt-2" onClick={(e) => this.handleClose}>Add Image</button>
+            <button type="submit" className="btn btn-primary mt-2 modal-btn-1" onClick={(e) => this.handleClose}>Add Image</button>
             <button type="button" className="btn btn-primary mt-2" onClick={(e) => this.deleteEvent(e)}>Delete</button>
           </form>
         </Modal.Body>

@@ -104,6 +104,8 @@ async handleSelect (address) {
      const response = await fetch(`api/v1/locations/`, options)
      const data = await response.json().catch(handleError)
      await console.log(data);
+     this.props.addLocation(data)
+     this.setState({name: '',address: '',categories: [],lat: '',lng: '',dayOpen: 'Mon',dayClose: 'Fri',hourOpen: '8am',hourClose: '5pm',website: '',show: false,});
   }
 
 
@@ -112,7 +114,9 @@ async handleSelect (address) {
   render(){
     return(
       <React.Fragment>
-      <button className='btn btn-primary' onClick={() => this.setState({ show: true})}>add location</button>
+      <div className='col-12 add-event-background'>
+        <button id='add-event-btn' className='btn' onClick={() => this.setState({ show: true})}>Add Location</button>
+      </div>
       <Modal dialogClassName='location-form-modal' show={this.state.show} onHide={this.handleClose}>
       <Modal.Header closeButton>Add a Location</Modal.Header>
       <Modal.Body>
