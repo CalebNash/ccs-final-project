@@ -87,6 +87,14 @@
   margin-right: 30px;
 }
 
+.carousel-head{
+  background-color: rgba(0,0,0,.5);
+}
+
+.carousel-para{
+  background-color: rgba(0,0,0,.5);
+}
+
 @media (max-width: 768px) {
   footer{
     background-color: black;

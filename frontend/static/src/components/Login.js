@@ -43,6 +43,7 @@ class Login extends React.Component{
      console.log(data);
      if(data){
        alert("Check your email for a link to reset your password");
+       this.setState({email: ''});
      }
   }
 

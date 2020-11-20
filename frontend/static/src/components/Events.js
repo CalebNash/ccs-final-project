@@ -20,7 +20,7 @@ class Events extends React.Component{
 
 
   render(){
-    const newEvents = this.state.newEvents.map(newEvent => <Carousel.Item key={newEvent.id}><img className="d-block w-100" src={newEvent.image} alt="First slide"/><Carousel.Caption><h3>{newEvent.title}</h3><p>{newEvent.body}</p></Carousel.Caption></Carousel.Item> );
+    const newEvents = this.state.newEvents.map(newEvent => <Carousel.Item key={newEvent.id}><img className="d-block w-100" src={newEvent.image} alt="First slide"/><Carousel.Caption><h3 className='carousel-head'>{newEvent.title}</h3><p className='carousel-para'>{newEvent.body}</p></Carousel.Caption></Carousel.Item> );
     return(
       <div>
           <Carousel >
